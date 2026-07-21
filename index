@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="sw" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GB MINISTRIES FM | God's Broadcasting Ministries</title>
+    
+    <!-- SEO & Open Graph Meta Tags -->
+    <meta name="description" content="Preaching the Word of God with evidence that Jesus is Alive. Listen live to GB MINISTRIES FM.">
+    <meta property="og:title" content="GB MINISTRIES FM - God's Broadcasting Ministries">
+    <meta property="og:description" content="Preaching the Word of God with evidence that Jesus is Alive.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Swiper Slider CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #0B4F9F;
+            --accent-orange: #FF7A00;
+            --accent-gold: #D4AF37;
+            --bg-light: #F8F9FA;
+            --text-light: #333333;
+            --card-light: rgba(255, 255, 255, 0.85);
+            
+            --bg-dark: #0B132B;
+            --text-dark: #F8F9FA;
+            --card-dark: rgba(17, 27, 56, 0.85);
+        }
+
+        body.light {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        body.dark {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--card-light);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(11, 79, 159, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark .glass-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(255, 122, 0, 0.15);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(11, 79, 159, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: var(--accent-orange) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(11, 79, 159, 0.85), rgba(11, 19, 43, 0.9)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        /* Live Badge & Equalizer */
+        .live-badge {
+            background: #ff3333;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.7);
+            animation: pulse-live 1.5s infinite;
+        }
+
+        @keyframes pulse-live {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 51, 51, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 51, 51, 0); }
+        }
+
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 30px;
+            margin: 15px 0;
+        }
+
+        .equalizer span {
+            display: block;
+            width: 5px;
+            background: var(--accent-orange);
+            animation: bounce 1.2s infinite ease-in-out;
+            border-radius: 3px;
+        }
+
+        .equalizer span:nth-child(2) { animation-delay: 0.2s; background: var(--accent-gold); }
+        .equalizer span:nth-child(3) { animation-delay: 0.4s; }
+        .equalizer span:nth-child(4) { animation-delay: 0.1s; background: var(--accent-gold); }
+        .equalizer span:nth-child(5) { animation-delay: 0.3s; }
+
+        @keyframes bounce {
+            0%, 100% { height: 5px; }
+            50% { height: 28px; }
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: var(--accent-orange);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: #e06c00;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--accent-orange);
+            color: var(--accent-orange);
+            background: transparent;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--accent-orange);
+            color: #fff;
+        }
+
+        /* Floating Buttons */
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .float-btn:hover { transform: scale(1.1); color: white; }
+        .whatsapp-float { background: #25D366; }
+        .play-float { background: var(--accent-orange); }
+        .top-float { background: var(--primary-blue); display: none; }
+
+        /* Loader */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary-blue);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+        
+        .spinner-grow { color: var(--accent-orange); }
+
+        /* Gallery */
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 15px;
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .masonry-item img {
+            width: 100%;
+            transition: transform 0.4s ease;
+        }
+        .masonry-item img:hover {
+            transform: scale(1.05);
+        }
+
+        @media(max-width: 768px) {
+            .masonry-grid { column-count: 1; }
+        }
+    </style>
+</head>
+<body class="light">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner-grow mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h4 class="fw-bold animate__animated animate__pulse animate__infinite">GB MINISTRIES FM</h4>
+        <p class="text-white-50">Inapakia baraka zako...</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-radio text-warning"></i> GB MINISTRIES FM
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-sm btn-outline-light rounded-circle" id="themeToggle" onclick="toggleTheme()" title="Badilisha Mwonekano">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="#home">Nyumbani</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Kuhusu Sisi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Vipindi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sermons">Mihadhara</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#donate">Sadaka</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">Habari</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Mawasiliano</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-action">
+        <a href="https://wa.me/25743938057" target="_blank" class="float-btn whatsapp-float" title="Wasiliana nasi WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="#home" class="float-btn play-float" onclick="togglePlayStream()" title="Cheza Radio">
+            <i class="fa-solid fa-play" id="floatingPlayIcon"></i>
+        </a>
+        <a href="#" class="float-btn top-float" id="scrollTopBtn" onclick="scrollToTop()" title="Rudi Juu">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <!-- HOME PAGE / HERO SECTION -->
+    <section id="home" class="hero-section text-white">
+        <div class="container text-center py-5" data-aos="fade-up">
+            <div class="mb-3">
+                <span class="live-badge"><span class="spinner-grow spinner-grow-sm" role="status"></span> ● LIVE NOW</span>
+            </div>
+            <h1 class="display-3 fw-extrabold text-uppercase mb-2 text-warning" style="letter-spacing: 2px;">GB MINISTRIES FM</h1>
+            <h3 class="fw-semibold text-white-50 mb-3">God's Broadcasting Ministries</h3>
+            <p class="lead fst-italic mb-4 text-light">"Preaching the Word of God with evidence that Jesus is Alive."</p>
+
+            <!-- Animated Audio Equalizer -->
+            <div class="d-flex justify-content-center">
+                <div class="equalizer">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Radio Player Box -->
+            <div class="glass-card p-4 mx-auto mt-4 max-w-600 text-dark" style="max-width: 550px;">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-danger">ON AIR</span>
+                    <small class="text-muted fw-bold" id="nowPlayingText">Listening to GB MINISTRIES FM</small>
+                </div>
+                
+                <audio id="radioPlayer" src="https://pastoraloyce.duckdns.org/listen/gb_ministries_fm/radio.mp3" preload="none"></audio>
+                
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 my-3">
+                    <button class="btn btn-primary-custom" onclick="playStream()"><i class="fa-solid fa-play me-2"></i> Play</button>
+                    <button class="btn btn-outline-custom" onclick="pauseStream()"><i class="fa-solid fa-pause me-2"></i> Pause</button>
+                    <button class="btn btn-danger" onclick="stopStream()"><i class="fa-solid fa-stop me-2"></i> Stop</button>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                    <i class="fa-solid fa-volume-high text-primary"></i>
+                    <input type="range" class="form-range w-50" id="volumeControl" min="0" max="1" step="0.1" value="1" onchange="setVolume(this.value)">
+                    <button class="btn btn-sm btn-secondary" onclick="toggleMute()"><i class="fa-solid fa-volume-xmark" id="muteIcon"></i></button>
+                </div>
+                <div class="mt-2">
+                    <button class="btn btn-sm btn-outline-secondary rounded-pill" onclick="shareRadio()"><i class="fa-solid fa-share-nodes me-1"></i> Shiriki Radio</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE COUNTER & BIBLE VERSE SECTION -->
+    <section class="py-5 bg-primary text-white text-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+                    <div class="glass-card p-4 text-white">
+                        <h2 class="display-4 fw-bold text-warning" id="listenerCount">1,482</h2>
+                        <p class="mb-0 text-uppercase fw-semibold"><i class="fa-solid fa-users me-2"></i> Listeners Online</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="glass-card p-4 text-white">
+                        <h5 class="text-warning fw-bold mb-2">Andiko la Siku</h5>
+                        <p class="fst-italic mb-1" id="dailyVerse">"Yesu Kristo ni yeye yule jana, leo na hata milele."</p>
+                        <small class="fw-bold" id="verseRef">- Waebrania 13:8</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT RADIO & VISION / MISSION -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Kuhusu Sisi</h2>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4 align-items-stretch">
+                <!-- Mission -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="text-warning fs-1 mb-3"><i class="fa-solid fa-bullseye"></i></div>
+                            <h4 class="fw-bold mb-3">Mission (Maono Yetu)</h4>
+                            <p class="mb-3">"Kuwa sauti kwa ulimwengu inayohubiri Neno la Mungu, kwa kila nyumba, kila taifa, na kila kizazi.</p>
+                            <p class="mb-3">Na kuonyesha kwamba Yesu Kristo yuhai hata leo."</p>
+                        </div>
+                        <div class="border-top pt-3 fst-italic text-primary fw-bold">
+                            'Yesu Kristo ni yeye yule jana, leo na hata milele.' <br><strong>Hebrews 13:8</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="text-warning fs-1 mb-3"><i class="fa-solid fa-eye"></i></div>
+                            <h4 class="fw-bold mb-3">Vision (Dira)</h4>
+                            <ul class="list-unstyled ps-0 mb-3">
+                                <li class="mb-3 d-flex gap-2">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1"></i>
+                                    <span>Kufundisha Neno la Mungu kwa ujasiri na kwa nguvu ya Roho Mtakatifu.</span>
+                                </li>
+                                <li class="mb-3 d-flex gap-2">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1"></i>
+                                    <span>Kuwaleta watu mbele za Mungu kupitia maombi.</span>
+                                </li>
+                                <li class="d-flex gap-2">
+                                    <i class="fa-solid fa-check-circle text-primary mt-1"></i>
+                                    <span>Kuonyesha ishara, miujiza, na unabii vinavyofuata wale waliomuamini Yesu.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="border-top pt-3 fw-bold text-warning">
+                            Marko 16:20
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motto -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-center text-center bg-primary text-white">
+                        <div class="text-warning fs-1 mb-3"><i class="fa-solid fa-quote-left"></i></div>
+                        <h4 class="fw-bold mb-3 text-warning">Motto Yetu</h4>
+                        <h3 class="fst-italic fw-bold text-light" style="line-height: 1.6;">
+                            "Kuhubiri Neno la Mungu lenye kumthibitisha Yesu Kristo Yuhai hata sasa."
+                        </h3>
+                        <div class="text-warning fs-1 mt-3"><i class="fa-solid fa-quote-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values Cards -->
+            <div class="row g-4 mt-4">
+                <div class="col-12 text-center mb-2">
+                    <h3 class="fw-bold text-primary">Thamani Zetu (Values)</h3>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-4 text-center h-100">
+                        <div class="text-warning fs-2 mb-3"><i class="fa-solid fa-book-bible"></i></div>
+                        <h5 class="fw-bold">NENO KWANZA</h5>
+                        <p class="text-muted mb-0">Biblia ndio msingi wetu mkuu wa imani na mafundisho.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-4 text-center h-100">
+                        <div class="text-warning fs-2 mb-3"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h5 class="fw-bold">USAFI WA MOYO</h5>
+                        <p class="text-muted mb-0">Uadilifu, utakatifu, na unyenyekevu mbele za Bwana.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-4 text-center h-100">
+                        <div class="text-warning fs-2 mb-3"><i class="fa-solid fa-people-group"></i></div>
+                        <h5 class="fw-bold">UPENDO KWA WATU</h5>
+                        <p class="text-muted mb-0">Sisi ni familia moja kubwa katika Kristo Yesu.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="glass-card p-4 text-center h-100">
+                        <div class="text-warning fs-2 mb-3"><i class="fa-solid fa-award"></i></div>
+                        <h5 class="fw-bold">UBORA</h5>
+                        <p class="text-muted mb-0">Tunatoa bora zetu kwa Mungu katika kila huduma.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="glass-card p-4 text-center h-100">
+                        <div class="text-warning fs-2 mb-3"><i class="fa-solid fa-dove"></i></div>
+                        <h5 class="fw-bold">UTII KWA ROHO MTAKATIFU</h5>
+                        <p class="text-muted mb-0">Tunafuata uongozaji na uwezo wa Roho Mtakatifu kila wakati.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMS / SCHEDULE PAGE -->
+    <section id="programs" class="py-5 bg-light-subtle">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Ratiba ya Vipindi Vyetu</h2>
+                <p class="text-muted">Pata kubarikiwa na vipindi vyetu vya kila siku vilivyosheheni neno na upako.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <!-- Day Selector Tabs -->
+            <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="pills-tab" role="tablist">
+                <li class="nav-item"><button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#monday">Jumatatu</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#tuesday">Jumanne</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#wednesday">Jumatano</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#thursday">Alhamisi</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#friday">Ijumaa</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#saturday">Jumamosi</button></li>
+                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#sunday">Jumapili</button></li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent">
+                <!-- Monday -->
+                <div class="tab-pane fade show active" id="monday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">05:00 AM - 08:00 AM</span>
+                                <h5>Asubuhi ya Baraka</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Mch. George Bulugu</p>
+                                <p class="text-muted small">Maombi ya alfajiri, neno la kutafakari na kuanza siku yako na Mungu.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">01:00 PM - 03:00 PM</span>
+                                <h5>Nuru ya Jamii</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Timu ya GB</p>
+                                <p class="text-muted small">Mafundisho ya ndoa, familia na malezi katika misingi ya Kikristo.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">07:00 PM - 10:00 PM</span>
+                                <h5>Sauti ya Uponyaji</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Mwl. Wa Huduma</p>
+                                <p class="text-muted small">Mihadhara ya neno la Mungu na maombi ya ukombozi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tuesday -->
+                <div class="tab-pane fade" id="tuesday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">06:00 AM - 09:00 AM</span>
+                                <h5>Asubuhi ya Ushindi</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Mch. George Bulugu</p>
+                                <p class="text-muted small">Kutangaza ushindi kupitia damu ya Yesu asubuhi hii.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">04:00 PM - 06:00 PM</span>
+                                <h5>Vijana na Kusudi</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Idara ya Vijana</p>
+                                <p class="text-muted small">Program maalum ya kuwajenga vijana kiroho na kiuchumi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Wednesday -->
+                <div class="tab-pane fade" id="wednesday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">05:00 AM - 08:00 AM</span>
+                                <h5>Siku ya Maombi na Kufunga</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Mch. George Bulugu</p>
+                                <p class="text-muted small">Maombi maalumu ya katikati ya juma na maombezi ya moja kwa moja.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Thursday -->
+                <div class="tab-pane fade" id="thursday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">06:00 AM - 09:00 AM</span>
+                                <h5>Neno Linaloponya</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: GB Team</p>
+                                <p class="text-muted small">Uchambuzi wa kina wa maandiko matakatifu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Friday -->
+                <div class="tab-pane fade" id="friday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">08:00 PM - 11:00 PM</span>
+                                <h5>Usiku wa Miujiza na Unabii</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Mch. George Bulugu</p>
+                                <p class="text-muted small">Ibja ya usiku yenye ishara, miujiza na uponyaji.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Saturday -->
+                <div class="tab-pane fade" id="saturday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">07:00 AM - 12:00 PM</span>
+                                <h5>Rika la Sifa na Kuabudu</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Idara ya UIMBAJI</p>
+                                <p class="text-muted small">Mkusanyiko wa nyimbo bora za sifa na kuabudu kutwa nzima.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sunday -->
+                <div class="tab-pane fade" id="sunday">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 h-100">
+                                <span class="badge bg-warning text-dark mb-2">09:00 AM - 01:00 PM</span>
+                                <h5>Ibada ya Jumapili ya Moja kwa Moja</h5>
+                                <p class="text-primary fw-semibold">Mtangazaji: Mch. George Bulugu</p>
+                                <p class="text-muted small">Matangazo ya moja kwa moja ya ibada kuu ya Jumapili kutoka hekaluni.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERMONS PAGE -->
+    <section id="sermons" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Mihadhara na Mafundisho</h2>
+                <p class="text-muted">Tafuta mafundisho, masomo ya Biblia, na vipindi vya maombi vilivyopita.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-6">
+                    <div class="input-group glass-card p-1">
+                        <input type="text" id="sermonSearch" class="form-control border-0 bg-transparent" placeholder="Tafuta mahubiri, somo au mnenaji..." onkeyup="filterSermons()">
+                        <button class="btn btn-primary-custom rounded-pill" type="button"><i class="fa-solid fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+                <button class="btn btn-sm btn-outline-primary active rounded-pill px-3 filter-btn" onclick="filterCategory('all')">Zote</button>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 filter-btn" onclick="filterCategory('bible')">Bible Studies</button>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 filter-btn" onclick="filterCategory('teachings')">Teachings</button>
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 filter-btn" onclick="filterCategory('prayer')">Prayer Sessions</button>
+            </div>
+
+            <!-- Sermons Grid -->
+            <div class="row g-4" id="sermonsGrid">
+                <div class="col-md-4 sermon-item" data-category="bible">
+                    <div class="glass-card p-3 h-100">
+                        <div class="position-relative mb-3">
+                            <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3" alt="Sermon">
+                            <span class="badge bg-primary position-absolute top-0 end-0 m-2">Bible Study</span>
+                        </div>
+                        <h5 class="fw-bold">Nguvu ya Neno la Imani</h5>
+                        <p class="text-muted small">Mch. George Bulugu anaeleza jinsi ya kuishi kwa imani katika ulimwengu wa sasa.</p>
+                        <a href="https://youtube.com/@gbsamuelministries" target="_blank" class="btn btn-sm btn-outline-custom w-100"><i class="fa-brands fa-youtube me-1 text-danger"></i> Sikiliza Zaidi</a>
+                    </div>
+                </div>
+                <div class="col-md-4 sermon-item" data-category="teachings">
+                    <div class="glass-card p-3 h-100">
+                        <div class="position-relative mb-3">
+                            <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3" alt="Sermon">
+                            <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">Teachings</span>
+                        </div>
+                        <h5 class="fw-bold">Kutembea katika Ushindi</h5>
+                        <p class="text-muted small">Mafundisho maalum ya kuondoa hofu na kushinda changamoto za kimaisha.</p>
+                        <a href="https://youtube.com/@gbsamuelministries" target="_blank" class="btn btn-sm btn-outline-custom w-100"><i class="fa-brands fa-youtube me-1 text-danger"></i> Sikiliza Zaidi</a>
+                    </div>
+                </div>
+                <div class="col-md-4 sermon-item" data-category="prayer">
+                    <div class="glass-card p-3 h-100">
+                        <div class="position-relative mb-3">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3" alt="Sermon">
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">Prayer Session</span>
+                        </div>
+                        <h5 class="fw-bold">Kifungo cha Maombi ya Asubuhi</h5>
+                        <p class="text-muted small">Kipindi cha kusifu, kuabudu na kusimika baraka juu ya siku yako mpya.</p>
+                        <a href="https://youtube.com/@gbsamuelministries" target="_blank" class="btn btn-sm btn-outline-custom w-100"><i class="fa-brands fa-youtube me-1 text-danger"></i> Sikiliza Zaidi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO GALLERY SECTION -->
+    <section class="py-5 bg-light-subtle">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Picha za Huduma</h2>
+                <p class="text-muted">Matukio mbalimbali kutoka GB MINISTRIES FM.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="masonry-grid" data-aos="fade-up">
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1510936111840-65e151ad71bb?auto=format&fit=crop&w=600&q=80" alt="Gallery">
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80" alt="Gallery">
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Gallery">
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80" alt="Gallery">
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=600&q=80" alt="Gallery">
+                </div>
+                <div class="masonry-item">
+                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=600&q=80" alt="Gallery">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section id="news" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Habari na Taarifa</h2>
+                <p class="text-muted">Pata taarifa za hivi punde kutoka huduma yetu.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="glass-card p-4 h-100">
+                        <span class="badge bg-warning text-dark mb-2">Julai 21, 2026</span>
+                        <h4>Uzinduzi Rasmi wa Redio ya Mtandaoni</h4>
+                        <p class="text-muted">GB MINISTRIES FM sasa ikohewani 24/7 kukuletea Neno la uzima kila kona ya dunia kupitia mtandao.</p>
+                        <a href="#contact" class="text-primary fw-bold text-decoration-none">Soma zaidi <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="glass-card p-4 h-100">
+                        <span class="badge bg-warning text-dark mb-2">Julai 18, 2026</span>
+                        <h4>Mkutano Mkuu wa Injili na Uponyaji</h4>
+                        <p class="text-muted">Jiandae kwa siku tatu za nguvu za Roho Mtakatifu na miujiza mikubwa itakayotangazwa kupitia redio hii.</p>
+                        <a href="#contact" class="text-primary fw-bold text-decoration-none">Soma zaidi <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section id="donate" class="py-5 bg-light-subtle">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Support God's Work</h2>
+                <p class="text-muted">Michango na Sadaka - Saidia kueneza injili ya Kristo.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- M-Pesa -->
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="glass-card p-4 text-center h-100 border-top border-4 border-warning">
+                        <div class="text-warning fs-1 mb-2"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <h4 class="fw-bold">M-Pesa</h4>
+                        <h3 class="text-primary fw-extrabold my-2" id="mpesaNum">0743938057</h3>
+                        <p class="text-muted small fw-semibold">George Gervas Bulugu</p>
+                        <button class="btn btn-sm btn-primary-custom w-100 mt-2" onclick="copyToClipboard('0743938057')"><i class="fa-solid fa-copy me-1"></i> Copy Namba</button>
+                    </div>
+                </div>
+
+                <!-- Airtel Money -->
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+                    <div class="glass-card p-4 text-center h-100 border-top border-4 border-danger">
+                        <div class="text-danger fs-1 mb-2"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <h4 class="fw-bold">Airtel Money</h4>
+                        <h3 class="text-primary fw-extrabold my-2" id="airtelNum">0698208788</h3>
+                        <p class="text-muted small fw-semibold">George Gervas Bulugu</p>
+                        <button class="btn btn-sm btn-primary-custom w-100 mt-2" onclick="copyToClipboard('0698208788')"><i class="fa-solid fa-copy me-1"></i> Copy Namba</button>
+                    </div>
+                </div>
+
+                <!-- CRDB Bank -->
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="glass-card p-4 text-center h-100 border-top border-4 border-primary">
+                        <div class="text-primary fs-1 mb-2"><i class="fa-solid fa-building-columns"></i></div>
+                        <h4 class="fw-bold">CRDB Bank</h4>
+                        <h6 class="text-muted my-3">Placeholder for future account details.</h6>
+                        <p class="text-muted small">George Gervas Bulugu</p>
+                        <button class="btn btn-sm btn-secondary w-100 mt-2" disabled>Inakuja Hivi Karibuni</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Code Placeholder -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-4 text-center" data-aos="zoom-in">
+                    <div class="glass-card p-4">
+                        <h5 class="fw-bold mb-3">QR Code ya Sadaka</h5>
+                        <div class="bg-white p-3 d-inline-block rounded shadow-sm">
+                            <i class="fa-solid fa-qrcode text-dark" style="font-size: 100px;"></i>
+                        </div>
+                        <p class="text-muted small mt-2">Changanua kufanya sadaka yako haraka.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT PAGE & SOCIAL MEDIA -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-primary">Mawasiliano</h2>
+                <p class="text-muted">Tunaomba kusikia kutoka kwako. Wasiliana nasi leo.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Info & Socials -->
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h3 class="fw-bold text-primary mb-3">GB MINISTRIES FM</h3>
+                            <p class="text-muted mb-4">God's Broadcasting Ministries</p>
+                            
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="bg-primary text-white rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <small class="text-muted">Simu / WhatsApp</small>
+                                    <h5 class="mb-0 fw-bold">0743938057</h5>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-3 my-4">
+                                <a href="https://www.facebook.com/george.gervas.92" target="_blank" class="btn btn-outline-primary rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://youtube.com/@gbsamuelministries" target="_blank" class="btn btn-outline-danger rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-youtube"></i></a>
+                                <a href="https://www.instagram.com/gb_samuel_ministries" target="_blank" class="btn btn-outline-warning rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://tiktok.com/@gbsamuel266" target="_blank" class="btn btn-outline-dark rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-tiktok"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a href="tel:0743938057" class="btn btn-primary-custom flex-grow-1"><i class="fa-solid fa-phone me-1"></i> Piga Simu</a>
+                            <a href="https://wa.me/25743938057" target="_blank" class="btn btn-success flex-grow-1 text-white"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="fw-bold mb-3">Tuma Ujumbe</h4>
+                        <form onsubmit="submitForm(event)">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Jina Lako</label>
+                                <input type="text" class="form-control" id="contactName" required placeholder="Andika jina lako hapa">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Namba ya Simu</label>
+                                <input type="tel" class="form-control" id="contactPhone" required placeholder="07XXXXXXXX">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Barua Pepe (Email)</label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="mfano@gmail.com">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Ujumbe Wako</label>
+                                <textarea class="form-control" id="contactMessage" rows="4" required placeholder="Andika ombi lako la maombi au ujumbe..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100"><i class="fa-solid fa-paper-plane me-1"></i> Tuma Ujumbe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Map Placeholder -->
+            <div class="row mt-4" data-aos="fade-up">
+                <div class="col-12">
+                    <div class="glass-card p-2">
+                        <div style="width: 100%; height: 300px; background: #e0e0e0; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                            <i class="fa-solid fa-map-location-dot fs-1 text-primary mb-2"></i>
+                            <h5 class="fw-bold text-muted">Google Map Placeholder</h5>
+                            <p class="text-muted small">Ofisi Kuu na Studio za GB MINISTRIES FM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <h3 class="fw-bold text-warning mb-3"><i class="fa-solid fa-radio"></i> GB MINISTRIES FM</h3>
+                    <p class="text-white-50">God's Broadcasting Ministries</p>
+                    <p class="text-white-50 small">Preaching the Word of God with evidence that Jesus is Alive.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold text-warning mb-3">Quick Links</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#programs" class="text-white-50 text-decoration-none">Vipindi</a></li>
+                        <li><a href="#home" class="text-white-50 text-decoration-none">Live Radio</a></li>
+                        <li><a href="#contact" class="text-white-50 text-decoration-none">Mawasiliano</a></li>
+                        <li><a href="#donate" class="text-white-50 text-decoration-none">Donate / Sadaka</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold text-warning mb-3">Mawasiliano ya Haraka</h5>
+                    <p class="text-white-50 small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i> 0743938057</p>
+                    <p class="text-white-50 small mb-2"><i class="fa-solid fa-user me-2 text-warning"></i> George Gervas Bulugu</p>
+                    <p class="text-white-50 small"><i class="fa-solid fa-globe me-2 text-warning"></i> www.gbministriesfm.co.tz</p>
+                </div>
+            </div>
+            <hr class="border-light opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">Copyright © 2026 GB MINISTRIES FM. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">Designed by Pastor Aloyce .. 0757 344 860 with ❤️ for the Glory of God.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS Animation
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Preloader Handler
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 500);
+        });
+
+        // Theme Toggle (Light / Dark Mode)
+        function toggleTheme() {
+            const htmlTag = document.documentElement;
+            const themeIcon = document.querySelector('#themeToggle i');
+            if (htmlTag.classList.contains('light')) {
+                htmlTag.classList.replace('light', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                htmlTag.classList.replace('dark', 'light');
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        // Radio Stream Player Logic
+        const player = document.getElementById('radioPlayer');
+        const nowPlayingText = document.getElementById('nowPlayingText');
+        const floatingPlayIcon = document.getElementById('floatingPlayIcon');
+
+        function playStream() {
+            player.play().then(() => {
+                nowPlayingText.innerHTML = "● LIVE NOW: GB MINISTRIES FM";
+                floatingPlayIcon.className = "fa-solid fa-pause";
+            }).catch(e => {
+                alert("Imeshindwa kucheza mtiririko moja kwa moja. Tafadhali jaribu tena.");
+            });
+        }
+
+        function pauseStream() {
+            player.pause();
+            nowPlayingText.innerHTML = "Imesitishwa (Paused)";
+            floatingPlayIcon.className = "fa-solid fa-play";
+        }
+
+        function stopStream() {
+            player.pause();
+            player.currentTime = 0;
+            nowPlayingText.innerHTML = "Imesimamishwa (Stopped)";
+            floatingPlayIcon.className = "fa-solid fa-play";
+        }
+
+        function togglePlayStream() {
+            if (player.paused) {
+                playStream();
+            } else {
+                pauseStream();
+            }
+        }
+
+        function setVolume(val) {
+            player.volume = val;
+        }
+
+        function toggleMute() {
+            player.muted = !player.muted;
+            document.getElementById('muteIcon').className = player.muted ? "fa-solid fa-volume-off" : "fa-solid fa-volume-xmark";
+        }
+
+        // Auto-reconnect stream if disconnected
+        player.addEventListener('error', function() {
+            nowPlayingText.innerHTML = "Inajaribu kuunganisha tena...";
+            setTimeout(() => {
+                player.load();
+                playStream();
+            }, 5000);
+        });
+
+        // Share Radio Feature
+        function shareRadio() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'GB MINISTRIES FM',
+                    text: 'Sikiliza Neno la Mungu na nyimbo za baraka kupitia GB MINISTRIES FM:',
+                    url: window.location.href,
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("Kiungo cha tovuti kimenakiliwa kwenye ubao klipu!");
+            }
+        }
+
+        // Copy Donation Numbers
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert("Namba " + text + " imenakiliwa kikamilifu!");
+        }
+
+        // Filter Sermons
+        function filterSermons() {
+            let input = document.getElementById('sermonSearch').value.toLowerCase();
+            let items = document.querySelectorAll('.sermon-item');
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase();
+                item.style.display = text.includes(input) ? "block" : "none";
+            });
+        }
+
+        function filterCategory(cat) {
+            let items = document.querySelectorAll('.sermon-item');
+            items.forEach(item => {
+                if (cat === 'all' || item.getAttribute('data-category') === cat) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+
+        // Scroll to Top Button Visibility
+        window.addEventListener('scroll', () => {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 300) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Contact Form Submission
+        function submitForm(e) {
+            e.preventDefault();
+            alert("Asante sana! Ujumbe wako umepokelewa na utashughulikiwa hivi karibuni na timu ya GB MINISTRIES FM.");
+            e.target.reset();
+        }
+
+        // Rotating Daily Bible Verses
+        const verses = [
+            { text: "Yesu Kristo ni yeye yule jana, leo na hata milele.", ref: "Waebrania 13:8" },
+            { text: "Nayaweza yote katika yeye anitiaye nguvu.", ref: "Wafilipi 4:13" },
+            { text: "Bwana ndiye mchungaji wangu, sitapungukiwa na kitu.", ref: "Zaburi 23:1" },
+            { text: "Mtegemee Bwana kwa moyo wako wote, wala usitegemee akili zako mwenyewe.", ref: "Mithali 3:5" }
+        ];
+        let vIndex = 0;
+        setInterval(() => {
+            vIndex = (vIndex + 1) % verses.length;
+            document.getElementById('dailyVerse').innerText = `"${verses[vIndex].text}"`;
+            document.getElementById('verseRef').innerText = `- ${verses[vIndex].ref}`;
+        }, 8000);
+
+        // Animated Listener Counter (Simulated Live Fluctuations)
+        setInterval(() => {
+            let counter = document.getElementById('listenerCount');
+            let current = parseInt(counter.innerText.replace(',', ''));
+            let change = Math.floor(Math.random() * 11) - 5; // -5 to +5
+            let newCount = Math.max(87, current + change);
+            counter.innerText = newCount.toLocaleString();
+        }, 5000);
+    </script>
+</body>
+</html>
