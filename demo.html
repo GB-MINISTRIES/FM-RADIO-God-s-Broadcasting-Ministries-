@@ -57,7 +57,6 @@
             overflow-x: hidden;
         }
 
-        /* Top Admin Notification Banner (Imeboreshwa kukaa chini ya maandishi) */
         #adminBannerContainer {
             display: none;
             width: 100%;
@@ -74,7 +73,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* Glassmorphism Cards */
         .glass-card {
             background: var(--card-light);
             backdrop-filter: blur(12px);
@@ -96,7 +94,6 @@
             box-shadow: 0 12px 40px rgba(255, 122, 0, 0.15);
         }
 
-        /* Navbar */
         .navbar {
             background: rgba(11, 79, 159, 0.95);
             backdrop-filter: blur(10px);
@@ -109,7 +106,6 @@
             color: var(--accent-orange) !important;
         }
 
-        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, rgba(11, 79, 159, 0.85), rgba(11, 19, 43, 0.9)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             min-height: 95vh;
@@ -117,9 +113,9 @@
             align-items: center;
             position: relative;
             padding-top: 100px;
+            padding-bottom: 50px;
         }
 
-        /* Live Badge & Equalizer */
         .live-badge {
             background: #ff3333;
             color: white;
@@ -160,7 +156,6 @@
         .equalizer span:nth-child(4) { animation-delay: 0.1s; background: var(--accent-gold); }
         .equalizer span:nth-child(5) { animation-delay: 0.3s; }
 
-        /* Recording Wave Specific */
         .recording-wave span {
             background: #ff3333;
             width: 6px;
@@ -172,7 +167,6 @@
             50% { height: 28px; }
         }
 
-        /* Buttons */
         .btn-primary-custom {
             background: var(--accent-orange);
             color: #fff;
@@ -205,7 +199,6 @@
             color: #fff;
         }
 
-        /* Floating Buttons */
         .floating-action {
             position: fixed;
             bottom: 25px;
@@ -236,7 +229,6 @@
         .sms-float { background: #FF7A00; }
         .top-float { background: #333; display: none; }
 
-        /* Loader */
         #preloader {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -252,18 +244,16 @@
         
         .spinner-grow { color: var(--accent-orange); }
 
-        /* Comments Box Scroll */
         .comments-box {
-            max-height: 320px;
+            max-height: 400px;
             overflow-y: auto;
         }
 
-        /* Elements hidden for Admin only */
         .admin-only {
             display: none !important;
         }
         body.admin-mode .admin-only {
-            display: inline-block !important; /* Adjusted for close button compatibility */
+            display: inline-block !important;
         }
         body.admin-mode tr.admin-only, body.admin-mode li.admin-only {
             display: table-row !important;
@@ -302,13 +292,19 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center gap-lg-2">
                     <li class="nav-item"><a class="nav-link" href="#home">Nyumbani</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#live-features">Interactions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#maoni">Maoni Live</a></li>
                     <li class="nav-item"><a class="nav-link" href="#recorder">Kinasa Sauti</a></li>
-                    <li class="nav-item admin-only"><a class="nav-link text-warning fw-bold" href="#sms-portal"><i class="fa-solid fa-lock me-1"></i>Usajili/SMS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#admin-portal">Admin Portal</a></li>
                     <li class="nav-item"><a class="nav-link" href="#programs">Vipindi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#donate">Sadaka</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Mawasiliano</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#donate">Support</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Kuhusu Sisi</a></li>
+                    <li class="nav-item admin-only"><a class="nav-link text-warning fw-bold" href="#sms-portal"><i class="fa-solid fa-lock me-1"></i>Usajili/SMS</a></li>
+                    
+                    <!-- Admin Portal Kwenye Menu Bar -->
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <a class="nav-link text-warning fw-bold border border-warning rounded px-3" href="#" data-bs-toggle="modal" data-bs-target="#adminModal">
+                            <i class="fa-solid fa-user-shield me-1"></i> Admin Portal
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -330,7 +326,7 @@
         </a>
     </div>
 
-    <!-- HOME PAGE / HERO SECTION -->
+    <!-- 1. HOME PAGE / HERO SECTION -->
     <section id="home" class="hero-section text-white">
         <div class="container text-center py-4" data-aos="fade-up">
             <div class="mb-3">
@@ -338,32 +334,32 @@
             </div>
             <h1 class="display-3 fw-extrabold text-uppercase mb-2 text-warning" style="letter-spacing: 2px;">GB MINISTRIES FM</h1>
             <h3 class="fw-semibold text-white-50 mb-3">God's Broadcasting Ministries</h3>
-            <p class="lead fst-italic mb-4 text-light">"Preaching the Word of God with evidence that Jesus is Alive."</p>
-
-            <!-- Admin Dynamic Banner Moved Here -->
+            
             <div id="adminBannerContainer" class="animate__animated animate__fadeInDown">
                 <div class="custom-banner d-flex justify-content-between align-items-start text-start">
                     <div>
                         <h5 class="fw-bold mb-1 text-dark"><i class="fa-solid fa-bullhorn me-2"></i><span id="adminBannerHeading">Neno la Uzima</span></h5>
                         <p class="mb-0 text-dark" id="adminBannerText" style="font-weight: 500;">Karibu kwenye kipindi cha Neno la uzima</p>
                     </div>
-                    <!-- Kitufe hiki kitaonekana kwa Admin pekee ('admin-only' class) -->
                     <button class="btn-close btn-close-dark ms-3 mt-1 admin-only" onclick="closeAdminBanner()" title="Funga (Admin Tu)"></button>
                 </div>
             </div>
 
-            <!-- Animated Audio Equalizer -->
             <div class="d-flex justify-content-center">
                 <div class="equalizer">
                     <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
 
-            <!-- Radio Player Box -->
-            <div class="glass-card p-4 mx-auto mt-4 text-dark" style="max-width: 580px;">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="badge bg-danger">ON AIR</span>
-                    <small class="text-muted fw-bold" id="nowPlayingText">Listening to GB MINISTRIES FM</small>
+            <!-- MAIN RADIO & INTERACTION CARD -->
+            <div class="glass-card p-4 mx-auto mt-4 text-dark" style="max-width: 650px;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge bg-danger animate__animated animate__pulse animate__infinite">ON AIR</span>
+                    <span class="badge bg-primary fs-6"><i class="fa-solid fa-users me-1"></i> <span id="listenerCount">82</span> Listeners</span>
+                </div>
+                
+                <div class="text-center mb-3">
+                    <h5 class="text-muted fw-bold mb-0" id="nowPlayingText">Listening to GB MINISTRIES FM</h5>
                 </div>
                 
                 <audio id="radioPlayer" crossorigin="anonymous" src="https://pastoraloyce.duckdns.org/listen/gb_ministries_fm/radio.mp3" preload="none"></audio>
@@ -372,6 +368,8 @@
                     <button class="btn btn-primary-custom" onclick="playStream()"><i class="fa-solid fa-play me-1"></i> Play</button>
                     <button class="btn btn-outline-custom" onclick="pauseStream()"><i class="fa-solid fa-pause me-1"></i> Pause</button>
                     <button class="btn btn-danger rounded-pill" onclick="stopStream()"><i class="fa-solid fa-stop me-1"></i> Stop</button>
+                    <!-- Kitufe cha Record kilichoongezwa baada ya Stop -->
+                    <button class="btn btn-warning rounded-pill text-dark fw-bold" onclick="startRadioRecording()" id="mainRecordBtn" title="Bonyeza kurekodi mahubiri au redio"><i class="fa-solid fa-circle-dot me-1 text-danger"></i> Record</button>
                 </div>
 
                 <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
@@ -380,151 +378,122 @@
                     <button class="btn btn-sm btn-secondary" onclick="toggleMute()"><i class="fa-solid fa-volume-xmark" id="muteIcon"></i></button>
                 </div>
 
-                <!-- Action Buttons bar -->
-                <div class="d-flex flex-wrap justify-content-center gap-2 mt-3 pt-3 border-top">
-                    <a href="tel:0743938057" class="btn btn-sm btn-outline-primary rounded-pill"><i class="fa-solid fa-phone me-1"></i> Piga: 0743938057</a>
-                    <a href="sms:0743938057" class="btn btn-sm btn-outline-warning text-dark rounded-pill"><i class="fa-solid fa-envelope me-1"></i> SMS: 0743938057</a>
-                    <a href="https://wa.me/255743938057" target="_blank" class="btn btn-sm btn-outline-success rounded-pill"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp: 0743938057</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LIVE COUNTER, BIBLE VERSE & INTERACTIONS SECTION -->
-    <section id="live-features" class="py-5 bg-primary text-black">
-        <div class="container">
-            <div class="row align-items-center g-4">
-                <!-- Live Counter Dynamically changing -->
-                <div class="col-md-4" data-aos="fade-right">
-                    <div class="glass-card p-4 text-center text-black">
-                        <h2 class="display-4 fw-bold text-warning" id="listenerCount">82</h2>
-                        <p class="mb-0 text-uppercase fw-semibold"><i class="fa-solid fa-users me-2"></i> Listeners Online</p>
-                    </div>
-                </div>
-
-                <!-- Followers, Like & Share Bar -->
-                <div class="col-md-4" data-aos="fade-up">
-                    <div class="glass-card p-4 text-center text-black">
-                        <h5 class="fw-bold mb-3 text-primary"><i class="fa-solid fa-thumbs-up me-1"></i> Shiriki na Tufuate</h5>
-                        <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
-                            <div>
-                                <h3 class="fw-bold mb-0 text-danger" id="followerCountDisplay">1,248</h3>
-                                <small class="fw-bold text-muted">Followers</small>
-                            </div>
-                            <div class="vr"></div>
-                            <div>
-                                <h3 class="fw-bold mb-0 text-primary" id="likeCountDisplay">452</h3>
-                                <small class="fw-bold text-muted">Likes</small>
-                            </div>
+                <div class="mt-4 pt-3 border-top text-center">
+                    <h6 class="fw-bold mb-3 text-primary"><i class="fa-solid fa-thumbs-up me-1"></i> Shiriki na Tufuate</h6>
+                    <div class="d-flex justify-content-center align-items-center gap-4 mb-3">
+                        <div>
+                            <h4 class="fw-bold mb-0 text-danger" id="followerCountDisplay">1,248</h4>
+                            <small class="fw-bold text-muted">Followers</small>
                         </div>
-
-                        <div class="d-flex flex-wrap gap-2 justify-content-center">
-                            <button class="btn btn-sm btn-danger rounded-pill" id="followBtn" onclick="toggleFollow()">
-                                <i class="fa-solid fa-user-plus me-1"></i> <span id="followText">Follow</span>
-                            </button>
-                            <button class="btn btn-sm btn-primary rounded-pill" id="likeBtn" onclick="addLike()">
-                                <i class="fa-solid fa-heart me-1"></i> Like
-                            </button>
-                            <button class="btn btn-sm btn-warning rounded-pill text-dark" onclick="shareRadio()">
-                                <i class="fa-solid fa-share-nodes me-1"></i> Share
-                            </button>
-                        </div>
-                        <div class="mt-3">
-                            <button class="btn btn-sm btn-outline-dark rounded-pill w-100" onclick="enableNotifications()">
-                                <i class="fa-solid fa-bell me-1"></i> Washa Notification
-                            </button>
+                        <div class="vr"></div>
+                        <div>
+                            <h4 class="fw-bold mb-0 text-primary" id="likeCountDisplay">452</h4>
+                            <small class="fw-bold text-muted">Likes</small>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4" data-aos="fade-left">
-                    <div class="glass-card p-4 text-center text-black">
-                        <h5 class="text-warning fw-bold mb-2">Andiko la Siku</h5>
-                        <p class="fst-italic mb-1" id="dailyVerse">"Yesu Kristo ni yeye yule jana, leo na hata milele."</p>
-                        <small class="fw-bold" id="verseRef">- Waebrania 13:8</small>
+                    <!-- MABORESHO: Notification (Taarifa) na Firebase DB Toggles -->
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <button class="btn btn-sm btn-info rounded-pill text-white" onclick="toggleNotifications()">
+                            <i class="fa-solid fa-bell me-1" id="notifyIcon"></i> <span id="notifyText">Pata Taarifa</span>
+                        </button>
+                        <button class="btn btn-sm btn-danger rounded-pill" id="followBtn" onclick="toggleFollow()">
+                            <i class="fa-solid fa-user-plus me-1"></i> <span id="followText">Follow</span>
+                        </button>
+                        <button class="btn btn-sm btn-primary rounded-pill" id="likeBtn" onclick="toggleLike()">
+                            <i class="fa-solid fa-heart me-1"></i> <span id="likeText">Like</span>
+                        </button>
+                        <button class="btn btn-sm btn-warning rounded-pill text-dark" onclick="shareRadio()">
+                            <i class="fa-solid fa-share-nodes me-1"></i> Share
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LIVE COMMENTS & KINASA SAUTI SECTION -->
-    <section class="py-5 bg-light-subtle">
-        <div class="container">
-            <div class="row g-4">
-                
-                <!-- LIVE LISTENER COMMENTS -->
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="glass-card p-4 h-100">
-                        <h4 class="fw-bold text-primary mb-3"><i class="fa-solid fa-comments me-2"></i>Maoni ya Wasikilizaji Live</h4>
-                        <p class="text-muted small">Andika maoni au ombi lako hapa yataonekana moja kwa moja.</p>
-                        
+    <!-- 2. MAONI YA WASIKILIZAJI LIVE -->
+    <section id="maoni" class="py-5 bg-light-subtle">
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-primary"><i class="fa-solid fa-comments me-2"></i>Maoni ya Wasikilizaji Live</h2>
+                <p class="text-muted">Andika maoni au ombi lako hapa na utahudumiwa katika jina la Yesu.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card p-4">
                         <form onsubmit="submitLiveComment(event)" class="mb-4">
-                            <div class="mb-2">
-                                <input type="text" id="commenterName" class="form-control" placeholder="Jina Lako" required>
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <input type="text" id="commenterName" class="form-control" placeholder="Jina Lako" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" id="commenterMessage" class="form-control" placeholder="Andika maoni au ujumbe wako hapa..." required>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <button type="submit" id="btnTumaMaoni" class="btn btn-primary-custom w-100"><i class="fa-solid fa-paper-plane me-1"></i> Tuma Maoni</button>
+                                </div>
                             </div>
-                            <div class="mb-2">
-                                <textarea id="commenterMessage" class="form-control" rows="2" placeholder="Andika maoni au ujumbe wako hapa..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary-custom w-100"><i class="fa-solid fa-paper-plane me-1"></i> Tuma Maoni</button>
                         </form>
 
                         <h6 class="fw-bold text-muted border-bottom pb-2">Maoni ya Hivi Punde:</h6>
                         <div class="comments-box d-flex flex-column gap-2" id="commentsContainer">
-                            <div class="p-2 border rounded bg-white">
-                                <strong class="text-primary small">Mwalimu John (Mwanza)</strong>
-                                <p class="mb-0 text-muted small">Barikiweni sana GB MINISTRIES FM! Neno linatubariki mno.</p>
-                                <small class="text-muted" style="font-size: 10px;">Hivi karibuni</small>
-                            </div>
+                            <p class="text-muted small text-center mt-3">Inapakia maoni yako...</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- MP3 AUDIO RECORDER (KINASA SAUTI) -->
-                <div class="col-lg-6" id="recorder" data-aos="fade-left">
-                    <div class="glass-card p-4 h-100 text-center">
-                        <h4 class="fw-bold text-primary mb-2"><i class="fa-solid fa-microphone-lines me-2"></i>Kinasa Sauti cha Mp3</h4>
-                        
-                        <!-- Tabs za Kurecord: Sauti ya Redio vs Mahubiri (Admin) -->
+    <!-- 3. KINASA SAUTI CHA MP3 -->
+    <section id="recorder" class="py-5">
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-primary"><i class="fa-solid fa-microphone-lines me-2"></i>Kinasa Sauti cha Mp3</h2>
+                <div class="mx-auto bg-warning rounded mb-4" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="glass-card p-4">
                         <ul class="nav nav-pills justify-content-center my-3" id="recorderTabs">
                             <li class="nav-item">
-                                <button class="nav-link active rounded-pill btn-sm" onclick="switchRecTab('radio')"><i class="fa-solid fa-radio me-1"></i> Rekodi Redio Live</button>
+                                <button class="nav-link active rounded-pill btn-sm px-4" onclick="switchRecTab('radio')"><i class="fa-solid fa-radio me-1"></i> Rekodi Redio Live</button>
                             </li>
                             <li class="nav-item admin-only ms-2">
-                                <button class="nav-link rounded-pill btn-sm bg-warning text-dark fw-bold" onclick="switchRecTab('sermon')"><i class="fa-solid fa-microphone me-1"></i> Rekodi Mahubiri (Admin)</button>
+                                <button class="nav-link rounded-pill btn-sm bg-warning text-dark fw-bold px-4" onclick="switchRecTab('sermon')"><i class="fa-solid fa-microphone me-1"></i> Rekodi Mahubiri (Admin)</button>
                             </li>
                         </ul>
 
-                        <!-- Tab 1: Kurekodi Redio Live (Kwa Admin & Listener) -->
                         <div id="radioRecorderTab">
-                            <p class="text-muted small mb-3">Rekodi vipindi na sauti inayorushwa Live kwenye Redio hivi sasa na uipakue (MP3).</p>
-                            <div class="my-3">
+                            <p class="text-muted small mb-3">Rekodi vipindi na sauti inayorushwa Live kwenye Redio hivi sasa na uipakue kwenye simu au kompyuta yako (MP3).</p>
+                            <div class="my-3 border rounded p-4 bg-light">
                                 <span class="badge bg-secondary p-2 fs-6 mb-3" id="radioRecStatus">Tayari Kurekodi Redio</span>
                                 <div class="d-flex justify-content-center gap-3">
-                                    <button class="btn btn-danger btn-lg rounded-circle p-3" id="startRadioRecBtn" onclick="startRadioRecording()" title="Anza Kurekodi Redio">
+                                    <button class="btn btn-danger btn-lg rounded-circle p-3 shadow" id="startRadioRecBtn" onclick="startRadioRecording()" title="Anza Kurekodi Redio">
                                         <i class="fa-solid fa-circle-dot fs-3"></i>
                                     </button>
-                                    <button class="btn btn-dark btn-lg rounded-circle p-3" id="stopRadioRecBtn" onclick="stopRadioRecording()" disabled title="Simamisha Kurekodi">
+                                    <button class="btn btn-dark btn-lg rounded-circle p-3 shadow" id="stopRadioRecBtn" onclick="stopRadioRecording()" disabled title="Simamisha Kurekodi">
                                         <i class="fa-solid fa-stop fs-3"></i>
                                     </button>
                                 </div>
                             </div>
 
-                            <div id="radioPlaybackContainer" class="mt-3" style="display:none;">
+                            <div id="radioPlaybackContainer" class="mt-3 p-3 border rounded" style="display:none;">
                                 <h6>Msikilizo wa Kipindi Kilichorekodiwa:</h6>
                                 <audio id="radioPlayback" controls class="w-100 my-2"></audio>
-                                <br>
-                                <a id="downloadRadioBtn" class="btn btn-sm btn-success rounded-pill mt-2" download="GB_Radio_Stream.mp3">
-                                    <i class="fa-solid fa-download me-1"></i> Pakua Sauti ya Redio (MP3)
+                                <a id="downloadRadioBtn" class="btn btn-success rounded-pill mt-2 w-100" download="GB_Radio_Stream.mp3">
+                                    <i class="fa-solid fa-download me-1"></i> Pakua Sauti (MP3)
                                 </a>
                             </div>
                         </div>
 
-                        <!-- Tab 2: Kurekodi Mahubiri (Kwa Admin Pekee) Kimeboreshwa -->
                         <div id="sermonRecorderTab" class="admin-only" style="display:none;">
                             <div class="alert alert-warning py-2 small fw-bold">Sehemu ya Admin: Rekodi Mahubiri kwa Maikrofoni ili kuweka Redioni baadaye.</div>
                             
-                            <!-- Timer & Wave Animation Indicator -->
                             <div id="sermonRecordingIndicator" class="my-4" style="display: none;">
                                 <div class="d-flex align-items-center justify-content-center gap-2 text-danger">
                                     <span class="spinner-grow spinner-grow-sm" role="status"></span>
@@ -537,99 +506,268 @@
                                 </div>
                             </div>
 
-                            <div class="my-3">
+                            <div class="my-3 border rounded p-4 bg-light">
                                 <span class="badge bg-secondary p-2 fs-6 mb-3" id="sermonRecStatus">Tayari Kurekodi Hubiri</span>
                                 <div class="d-flex justify-content-center gap-3">
-                                    <button class="btn btn-warning btn-lg rounded-circle p-3 text-dark" id="startSermonRecBtn" onclick="startSermonRecording()" title="Anza Kurekodi Mahubiri">
+                                    <button class="btn btn-warning btn-lg rounded-circle p-3 text-dark shadow" id="startSermonRecBtn" onclick="startSermonRecording()" title="Anza Kurekodi Mahubiri">
                                         <i class="fa-solid fa-microphone fs-3"></i>
                                     </button>
-                                    <button class="btn btn-dark btn-lg rounded-circle p-3" id="stopSermonRecBtn" onclick="stopSermonRecording()" disabled title="Simamisha">
+                                    <button class="btn btn-dark btn-lg rounded-circle p-3 shadow" id="stopSermonRecBtn" onclick="stopSermonRecording()" disabled title="Simamisha">
                                         <i class="fa-solid fa-stop fs-3"></i>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- New Replay, Delete, Download Action Buttons -->
-                            <div id="sermonActionsContainer" class="mt-4 p-3 bg-light rounded shadow-sm border" style="display:none;">
+                            <div id="sermonActionsContainer" class="mt-4 p-3 bg-white rounded shadow-sm border" style="display:none;">
                                 <h6 class="fw-bold mb-2 text-primary">Sikiliza Rekodi Yako:</h6>
-                                <!-- Audio Player kwa ajili ya Admin kujisikiliza -->
                                 <audio id="sermonPlayback" controls class="w-100 mb-3"></audio>
                                 
                                 <div class="d-flex flex-wrap justify-content-center gap-3">
-                                    <button class="btn btn-danger rounded-pill fw-bold px-3" onclick="deleteSermon()" title="Futa Rekodi Hii">
+                                    <button class="btn btn-danger rounded-pill fw-bold px-4" onclick="deleteSermon()" title="Futa Rekodi Hii">
                                         <i class="fa-solid fa-trash me-1"></i> Futa
                                     </button>
-                                    <a id="downloadSermonBtn" class="btn btn-success rounded-pill fw-bold px-3" download="GB_Sermon_Hubiri.mp3" title="Pakua Sauti">
+                                    <a id="downloadSermonBtn" class="btn btn-success rounded-pill fw-bold px-4" download="GB_Sermon_Hubiri.mp3" title="Pakua Sauti">
                                         <i class="fa-solid fa-download me-1"></i> Pakua
                                     </a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ADMIN PORTAL (LOGIN & BANNER CONTROL) -->
-    <section id="admin-portal" class="py-5 bg-light-subtle">
-        <div class="container">
-            <div class="text-center mb-4" data-aos="fade-up">
-                <h2 class="fw-bold text-primary"><i class="fa-solid fa-user-shield me-2"></i>Admin Portal</h2>
-                <p class="text-muted" id="adminPortalSub">Ingia kama Admin ili kudhibiti Portal ya Usajili, SMS na Banner.</p>
+    <!-- 4. RATIBA YA VIPINDI -->
+    <section id="programs" class="py-5 bg-light-subtle">
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-primary"><i class="fa-solid fa-calendar-days me-2"></i>Ratiba ya Vipindi</h2>
+                <p class="text-muted">Ungana nasi kwenye vipindi vyetu vya baraka vinavyokujia kila siku.</p>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        <div class="card-header bg-primary text-white py-3 border-0">
+                            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-sun text-warning me-2"></i>Asubuhi</h5>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Neno la Uzima</span>
+                                    <span class="badge bg-light text-dark border">06:00 - 08:00</span>
+                                </li>
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Sifa na Kuabudu</span>
+                                    <span class="badge bg-light text-dark border">08:00 - 10:00</span>
+                                </li>
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Nuru ya Siku</span>
+                                    <span class="badge bg-light text-dark border">10:00 - 12:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        <div class="card-header bg-warning text-dark py-3 border-0">
+                            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-cloud-sun text-danger me-2"></i>Mchana</h5>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Maombi ya Kufunguliwa</span>
+                                    <span class="badge bg-light text-dark border">12:00 - 14:00</span>
+                                </li>
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Maswali na Majibu</span>
+                                    <span class="badge bg-light text-dark border">14:00 - 16:00</span>
+                                </li>
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Ushuhuda wa Uponyaji</span>
+                                    <span class="badge bg-light text-dark border">16:00 - 18:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        <div class="card-header bg-dark text-white py-3 border-0">
+                            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-moon text-info me-2"></i>Jioni & Usiku</h5>
+                        </div>
+                        <div class="card-body bg-white text-dark">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Injili ya Kristo</span>
+                                    <span class="badge bg-light text-dark border">18:00 - 20:00</span>
+                                </li>
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Mahusiano & Familia</span>
+                                    <span class="badge bg-light text-dark border">20:00 - 22:00</span>
+                                </li>
+                                <li class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                                    <span>Muziki wa Kiroho (Non-Stop)</span>
+                                    <span class="badge bg-light text-dark border">22:00 - 06:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SUPPORT GOD'S WORK -->
+    <section id="donate" class="py-5 text-white" style="background: linear-gradient(135deg, rgba(11, 79, 159, 0.95), rgba(11, 19, 43, 0.95)), url('https://images.unsplash.com/photo-1544427920-c49ccdaf8c48?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; background-blend-mode: multiply;">
+        <div class="container" data-aos="zoom-in">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-warning"><i class="fa-solid fa-hand-holding-dollar me-2"></i>Support God's Work</h2>
+                <p class="lead">Kuwa sehemu ya kufikisha Injili kwa watu wengi zaidi kupitia matoleo na sadaka yako.</p>
+                <div class="mx-auto bg-white rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row justify-content-center text-dark">
+                <!-- Mitandao ya Simu (Vodacom & Airtel) -->
+                <div class="col-md-5 mb-3">
+                    <div class="card h-100 text-center p-4 border-0 shadow-lg" style="border-radius: 15px;">
+                        <i class="fa-solid fa-mobile-screen-button fa-3x text-danger mb-3"></i>
+                        <h5 class="fw-bold">Mitandao ya Simu</h5>
+                        <hr>
+                        <p class="text-muted mb-2">Vodacom M-Pesa: <strong class="fs-5 text-danger">0743938057</strong></p>
+                        <p class="text-muted mb-2">Airtel Money: <strong class="fs-5 text-danger">0698208788</strong></p>
+                        <p class="text-muted small mt-2">Jina litakalosoma: <strong>GEORGE BULUGU</strong></p>
+                    </div>
+                </div>
+                <!-- Akaunti ya Benki -->
+                <div class="col-md-5 mb-3">
+                    <div class="card h-100 text-center p-4 border-0 shadow-lg" style="border-radius: 15px;">
+                        <i class="fa-solid fa-building-columns fa-3x text-primary mb-3"></i>
+                        <h5 class="fw-bold">Akaunti ya Benki</h5>
+                        <hr>
+                        <p class="text-muted mb-2">Benki: <strong>CRDB Bank</strong></p>
+                        <p class="text-muted mb-2">Akaunti: <strong class="fs-5 text-primary">0152663044200</strong></p>
+                        <p class="text-muted small mt-2">Jina la Akaunti: <strong>GEORGE BULUGU</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. KUHUSU SISI -->
+    <section id="about" class="py-5">
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-primary">Kuhusu Sisi</h2>
+                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-4 h-100 border">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-church fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Sisi Ni Nani?</h4>
+                        <p class="text-muted">GB MINISTRIES FM (God's Broadcasting Ministries) ni kituo cha redio cha kiroho kinachojitolea kuleta tumaini, uponyaji, na faraja kwa wasikilizaji wetu wote kupitia ujumbe wa injili ya kweli.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-4 h-100 border">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-eye fa-3x text-warning"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Vision Yetu</h4>
+                        <p class="text-muted">Kuwafikia watu wa mataifa yote na Neno la Mungu, kuwajenga kiroho, kuleta mabadiliko chanya kwenye jamii, na kuandaa kanisa kwa ajili ya ujio wa pili wa Yesu Kristo.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="glass-card p-4 h-100 border">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-fire fa-3x text-danger"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Moto Yetu</h4>
+                        <p class="fst-italic text-muted">"Preaching the Word of God with evidence that Jesus is Alive."</p>
+                        <p class="text-muted small">(Tunahubiri Neno la Mungu kwa uthibitisho usiopingika kuwa Yesu Kristo yu Hai).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAWASILIANO -->
+    <section id="contact" class="py-5 bg-light-subtle">
+        <div class="container" data-aos="fade-up">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-primary"><i class="fa-solid fa-address-book me-2"></i>Mawasiliano</h2>
                 <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
             </div>
 
-            <!-- Form ya Admin Login -->
-            <div class="row justify-content-center" id="adminLoginFormContainer" data-aos="zoom-in">
+            <div class="row g-4">
                 <div class="col-md-5">
-                    <div class="glass-card p-4">
-                        <h4 class="fw-bold text-center text-primary mb-3"><i class="fa-solid fa-lock me-2"></i>Ingia (Admin Login)</h4>
-                        <form onsubmit="handleAdminLogin(event)">
-                            <div class="mb-3">
-                                <label class="form-label fw-bold small">Jina la Mtumiaji (Username)</label>
-                                <input type="text" id="adminUsername" class="form-control" placeholder="Ingiza username (admin)" required>
+                    <div class="glass-card p-4 h-100 border-top border-4 border-primary">
+                        <h4 class="fw-bold mb-4">Wasiliana Nasi</h4>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
+                                <i class="fa-solid fa-location-dot"></i>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold small">Nenosiri (Password)</label>
-                                <input type="password" id="adminPassword" class="form-control" placeholder="Ingiza password (admin123)" required>
+                            <div>
+                                <h6 class="fw-bold mb-0">Makao Makuu</h6>
+                                <p class="text-muted mb-0 small">Tanzania</p>
                             </div>
-                            <button type="submit" class="btn btn-primary-custom w-100">
-                                <i class="fa-solid fa-right-to-bracket me-1"></i> Ingia Kwenye Admin Portal
-                            </button>
-                        </form>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">WhatsApp / Simu</h6>
+                                <p class="text-muted mb-0 small">+255 743 938 057</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Barua Pepe</h6>
+                                <p class="text-muted mb-0 small">info@gbministriesfm.com</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6 class="fw-bold text-primary">Tufuate Mtandaoni</h6>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-primary btn-sm rounded-circle"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="btn btn-outline-danger btn-sm rounded-circle"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#" class="btn btn-outline-info btn-sm rounded-circle"><i class="fa-brands fa-twitter"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Admin Controls -->
-            <div class="row justify-content-center admin-only" id="adminDashboardControls" data-aos="zoom-in">
-                <div class="col-md-8">
-                    <div class="glass-card p-4">
-                        <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-                            <div>
-                                <h5 class="fw-bold text-success mb-0"><i class="fa-solid fa-user-check me-2"></i>Karibu, Admin!</h5>
-                                <small class="text-muted">Unapata uwezo wa kuona Usajili, Banner na Kinasa Mahubiri.</small>
-                            </div>
-                            <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="handleAdminLogout()">
-                                <i class="fa-solid fa-right-from-bracket me-1"></i> Ondoka (Logout)
-                            </button>
-                        </div>
-
-                        <form onsubmit="updateAdminBanner(event)">
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Kichwa cha Tangazo (Heading)</label>
-                                <input type="text" id="adminBannerHeadingInput" class="form-control" placeholder="Mfano: Neno la Uzima" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Ujumbe wa Tangazo</label>
-                                <textarea id="adminBannerTextInput" class="form-control" rows="3" placeholder="Andika ujumbe wa mtangazaji/admin hapa..." required></textarea>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-outline-danger btn-sm rounded-pill" onclick="closeAdminBanner()">Ondoa Banner</button>
-                                <button type="submit" class="btn btn-primary-custom"><i class="fa-solid fa-bullhorn me-1"></i> Rusisha Banner Live</button>
+                
+                <div class="col-md-7">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="fw-bold mb-3">Tuma Ujumbe</h4>
+                        <form onsubmit="alert('Ujumbe wako umetumwa kikamilifu. Mungu akubariki!'); event.preventDefault();">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Jina Lako" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Barua Pepe (Email)">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" placeholder="Mada (Subject)" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="4" placeholder="Ujumbe Wako..." required></textarea>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn btn-primary-custom px-4"><i class="fa-solid fa-paper-plane me-2"></i>Tuma Ujumbe</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -638,7 +776,7 @@
         </div>
     </section>
 
-    <!-- SMS PORTAL & REGISTRATION (PORTAL YA USAJILI NA SMS - FOR ADMIN ONLY) -->
+    <!-- SMS PORTAL & REGISTRATION -->
     <section id="sms-portal" class="py-5 admin-only">
         <div class="container">
             <div class="text-center mb-4" data-aos="fade-up">
@@ -647,10 +785,8 @@
                 <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
             </div>
 
-            <!-- Form ya Usajili -->
             <div class="glass-card p-4 mb-5" data-aos="fade-up">
                 <form id="registrationForm" onsubmit="handleRegistration(event)">
-                    <input type="hidden" id="editRowId" value="">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label fw-bold small">Jina Kamili *</label>
@@ -685,43 +821,28 @@
                 </form>
             </div>
 
-            <!-- Table Filter & Search -->
             <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2" data-aos="fade-up">
                 <h4 class="fw-bold text-primary mb-0">Orodha ya Waliojisajili</h4>
                 <div class="w-auto" style="min-width: 280px;">
-                    <input type="text" id="tableFilterInput" class="form-control" placeholder="Tafuta kwa Jina, Simu au Eneo..." onkeyup="filterRegisteredUsers()">
+                    <input type="text" id="tableFilterInput" class="form-control" placeholder="Tafuta kwa Jina au Simu..." onkeyup="filterRegisteredUsers()">
                 </div>
             </div>
 
-            <!-- Table Ya Waliojisajili -->
             <div class="glass-card p-3" data-aos="fade-up">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0" id="registeredUsersTable">
                         <thead class="table-primary">
                             <tr>
-                                <th>#</th>
                                 <th>Jina Kamili</th>
-                                <th>Namba ya Simu</th>
+                                <th>Simu</th>
                                 <th>Jinsia</th>
                                 <th>Eneo</th>
-                                <th>Shida / Ujumbe</th>
-                                <th class="text-center">Action</th>
+                                <th>Ujumbe</th>
+                                <th>Muda</th>
                             </tr>
                         </thead>
                         <tbody id="registeredTableBody">
-                            <tr>
-                                <td>1</td>
-                                <td class="fw-bold">Grace Joseph</td>
-                                <td>0743938057</td>
-                                <td>Mwanamke</td>
-                                <td>Mwanza</td>
-                                <td>Naomba maombi ya afya na familia.</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-warning me-1" onclick="editUser(this)"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <a href="tel:0743938057" class="btn btn-sm btn-primary me-1"><i class="fa-solid fa-phone"></i></a>
-                                    <a href="sms:0743938057" class="btn btn-sm btn-success"><i class="fa-solid fa-comment-sms"></i></a>
-                                </td>
-                            </tr>
+                            <tr><td colspan="6" class="text-center text-muted">Inapakia taarifa...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -729,300 +850,351 @@
         </div>
     </section>
 
-    <!-- ABOUT RADIO & VISION / MISSION -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold text-primary">Kuhusu Sisi</h2>
-                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
-            </div>
-            
-            <div class="row g-4 align-items-stretch">
-                <!-- Mission -->
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="text-warning fs-1 mb-3"><i class="fa-solid fa-bullseye"></i></div>
-                            <h4 class="fw-bold mb-3">Mission (Maono Yetu)</h4>
-                            <p class="mb-3">"Kuwa sauti kwa ulimwengu inayohubiri Neno la Mungu, kwa kila nyumba, kila taifa, na kila kizazi.</p>
-                            <p class="mb-3">Na kuonyesha kwamba Yesu Kristo yuhai hata leo."</p>
-                        </div>
-                        <div class="border-top pt-3 fst-italic text-primary fw-bold">
-                            'Yesu Kristo ni yeye yule jana, leo na hata milele.' <br><strong>Hebrews 13:8</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vision -->
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <div class="text-warning fs-1 mb-3"><i class="fa-solid fa-eye"></i></div>
-                            <h4 class="fw-bold mb-3">Vision (Dira)</h4>
-                            <ul class="list-unstyled ps-0 mb-3">
-                                <li class="mb-3 d-flex gap-2">
-                                    <i class="fa-solid fa-check-circle text-primary mt-1"></i>
-                                    <span>Kufundisha Neno la Mungu kwa ujasiri na kwa nguvu ya Roho Mtakatifu.</span>
-                                </li>
-                                <li class="mb-3 d-flex gap-2">
-                                    <i class="fa-solid fa-check-circle text-primary mt-1"></i>
-                                    <span>Kuwaleta watu mbele za Mungu kupitia maombi.</span>
-                                </li>
-                                <li class="d-flex gap-2">
-                                    <i class="fa-solid fa-check-circle text-primary mt-1"></i>
-                                    <span>Kuonyesha ishara, miujiza, na unabii vinavyofuata wale waliomuamini Yesu.</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="border-top pt-3 fw-bold text-warning">
-                            Marko 16:20
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Motto -->
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-center text-center bg-primary text-white">
-                        <div class="text-warning fs-1 mb-3"><i class="fa-solid fa-quote-left"></i></div>
-                        <h4 class="fw-bold mb-3 text-warning">Motto Yetu</h4>
-                        <h3 class="fst-italic fw-bold text-light" style="line-height: 1.6;">
-                            "Kuhubiri Neno la Mungu lenye kumthibitisha Yesu Kristo Yuhai hata sasa."
-                        </h3>
-                        <div class="text-warning fs-1 mt-3"><i class="fa-solid fa-quote-right"></i></div>
-                    </div>
-                </div>
+    <!-- ANDIKO LA SIKU -->
+    <section class="py-5" style="background: rgba(0,0,0,0.03);">
+        <div class="container text-center" data-aos="zoom-in">
+            <div class="glass-card p-4 mx-auto" style="max-width: 700px; border-top: 4px solid var(--accent-orange);">
+                <h4 class="text-primary fw-bold mb-3"><i class="fa-solid fa-book-bible me-2"></i>Andiko la Siku</h4>
+                <p class="fst-italic mb-3 fs-5" id="dailyVerse">"Yesu Kristo ni yeye yule jana, leo na hata milele."</p>
+                <h6 class="fw-bold text-warning rounded p-2 d-inline-block bg-dark" id="verseRef">- Waebrania 13:8</h6>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAMS / SCHEDULE PAGE -->
-    <section id="programs" class="py-5 bg-light-subtle">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold text-primary">Ratiba ya Vipindi Vyetu</h2>
-                <p class="text-muted">Pata kubarikiwa na vipindi vyetu vya kila siku vilivyosheheni neno na upako.</p>
-                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
-            </div>
-
-            <!-- Day Selector Tabs -->
-            <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="pills-tab" role="tablist">
-                <li class="nav-item"><button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#monday">Jumatatu</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#tuesday">Jumanne</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#wednesday">Jumatano</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#thursday">Alhamisi</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#friday">Ijumaa</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#saturday">Jumamosi</button></li>
-                <li class="nav-item"><button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#sunday">Jumapili</button></li>
-            </ul>
-
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="monday">
-                    <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="glass-card p-4 h-100">
-                                <span class="badge bg-warning text-dark mb-2">05:00 AM - 08:00 AM</span>
-                                <h5>Asubuhi ya Baraka</h5>
-                                <p class="text-primary fw-semibold">Mtangazaji: Mch. George Bulugu</p>
-                                <p class="text-muted small">Maombi ya alfajiri, neno la kutafakari na kuanza siku yako na Mungu.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="glass-card p-4 h-100">
-                                <span class="badge bg-warning text-dark mb-2">01:00 PM - 03:00 PM</span>
-                                <h5>Nuru ya Jamii</h5>
-                                <p class="text-primary fw-semibold">Mtangazaji: Timu ya GB</p>
-                                <p class="text-muted small">Mafundisho ya ndoa, familia na malezi katika misingi ya Kikristo.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="glass-card p-4 h-100">
-                                <span class="badge bg-warning text-dark mb-2">07:00 PM - 10:00 PM</span>
-                                <h5>Sauti ya Uponyaji</h5>
-                                <p class="text-primary fw-semibold">Mtangazaji: Mwl. Wa Huduma</p>
-                                <p class="text-muted small">Mihadhara ya neno la Mungu na maombi ya ukombozi.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DONATION SECTION -->
-    <section id="donate" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold text-primary">Support God's Work</h2>
-                <p class="text-muted">Michango na Sadaka - Saidia kueneza injili ya Kristo.</p>
-                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
-            </div>
-
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
-                    <div class="glass-card p-4 text-center h-100 border-top border-4 border-warning">
-                        <div class="text-warning fs-1 mb-2"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <h4 class="fw-bold">Vodacom M-Pesa</h4>
-                        <h3 class="text-primary fw-extrabold my-2" id="mpesaNum">0743938057</h3>
-                        <p class="text-muted small fw-semibold">George Gervas Bulugu</p>
-                        <button class="btn btn-sm btn-primary-custom w-100 mt-2" onclick="copyToClipboard('0743938057')"><i class="fa-solid fa-copy me-1"></i> Copy Namba</button>
-                    </div>
-                </div>
-
-                <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
-                    <div class="glass-card p-4 text-center h-100 border-top border-4 border-danger">
-                        <div class="text-danger fs-1 mb-2"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <h4 class="fw-bold">Airtel Money</h4>
-                        <h3 class="text-primary fw-extrabold my-2" id="airtelNum">0698208788</h3>
-                        <p class="text-muted small fw-semibold">George Gervas Bulugu</p>
-                        <button class="btn btn-sm btn-primary-custom w-100 mt-2" onclick="copyToClipboard('0698208788')"><i class="fa-solid fa-copy me-1"></i> Copy Namba</button>
-                    </div>
-                </div>
-
-                <div class="col-md-4" data-aos="flip-left" data-aos-delay="300">
-                    <div class="glass-card p-4 text-center h-100 border-top border-4 border-primary">
-                        <div class="text-primary fs-1 mb-2"><i class="fa-solid fa-building-columns"></i></div>
-                        <h4 class="fw-bold">CRDB Bank</h4>
-                        <h6 class="text-muted my-3">0152663044200</h6>
-                        <p class="text-muted small">George Gervas Bulugu</p>
-                        <button class="btn btn-sm btn-secondary w-100 mt-2" disabled>Karibu ushiriki baraka hizi</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT PAGE & SOCIAL MEDIA -->
-    <section id="contact" class="py-5 bg-light-subtle">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold text-primary">Mawasiliano</h2>
-                <p class="text-muted">Tunaomba kusikia kutoka kwako. Wasiliana nasi leo.</p>
-                <div class="mx-auto bg-warning rounded" style="width: 60px; height: 4px;"></div>
-            </div>
-
-            <div class="row g-4 align-items-stretch">
-                <div class="col-lg-5" data-aos="fade-right">
-                    <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <h3 class="fw-bold text-primary mb-3">GB MINISTRIES FM</h3>
-                            <p class="text-muted mb-4">God's Broadcasting Ministries</p>
-                            
-                            <div class="d-flex align-items-center gap-3 mb-3">
-                                <div class="bg-primary text-white rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                                <div>
-                                    <small class="text-muted">Simu / WhatsApp</small>
-                                    <h5 class="mb-0 fw-bold">0743938057</h5>
-                                </div>
-                            </div>
-
-                            <div class="d-flex gap-3 my-4">
-                                <a href="https://www.facebook.com/george.gervas.92" target="_blank" class="btn btn-outline-primary rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-facebook-f"></i></a>
-                                <a href="https://youtube.com/@gbsamuelministries" target="_blank" class="btn btn-outline-danger rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-youtube"></i></a>
-                                <a href="https://www.instagram.com/gb_samuel_ministries" target="_blank" class="btn btn-outline-warning rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i class="fa-brands fa-instagram"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="d-flex gap-2">
-                            <a href="tel:0743938057" class="btn btn-primary-custom flex-grow-1"><i class="fa-solid fa-phone me-1"></i> Piga Simu</a>
-                            <a href="sms:0743938057" class="btn btn-warning flex-grow-1 text-dark fw-bold"><i class="fa-solid fa-comment-sms me-1"></i> SMS</a>
-                            <a href="https://wa.me/255743938057" target="_blank" class="btn btn-success flex-grow-1 text-white"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-7" data-aos="fade-left">
-                    <div class="glass-card p-4 h-100">
-                        <h4 class="fw-bold mb-3">Tuma Ujumbe wa Moja kwa Moja</h4>
-                        <form onsubmit="submitForm(event)">
-                            <div class="mb-3">
-                                <label class="form-label small fw-bold">Jina Lako</label>
-                                <input type="text" class="form-control" id="contactName" required placeholder="Andika jina lako hapa">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label small fw-bold">Namba ya Simu</label>
-                                <input type="tel" class="form-control" id="contactPhone" required placeholder="07XXXXXXXX">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label small fw-bold">Ujumbe Wako</label>
-                                <textarea class="form-control" id="contactMessage" rows="4" required placeholder="Andika ombi lako la maombi au ujumbe..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary-custom w-100"><i class="fa-solid fa-paper-plane me-1"></i> Tuma Ujumbe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-primary text-white pt-5 pb-3">
+    <!-- FOOTER KUU -->
+    <footer class="bg-dark text-white pt-5 pb-3">
         <div class="container">
             <div class="row g-4 mb-4">
-                <div class="col-lg-4">
-                    <h3 class="fw-bold text-warning mb-3"><i class="fa-solid fa-radio"></i> GB MINISTRIES FM</h3>
-                    <p class="text-white-50">God's Broadcasting Ministries</p>
-                    <p class="text-white-50 small">Preaching the Word of God with evidence that Jesus is Alive.</p>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold text-warning mb-3"><i class="fa-solid fa-radio me-2"></i>GB MINISTRIES FM</h5>
+                    <p class="text-white-50 small">
+                        Preaching the Word of God with evidence that Jesus is Alive. Sisi ni kituo cha kiroho kinachokuletea injili iliyo hai saa 24.
+                    </p>
                 </div>
-                <div class="col-lg-4">
-                    <h5 class="fw-bold text-warning mb-3">Mawasiliano ya Haraka</h5>
-                    <p class="text-white-50 small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i> 0743938057</p>
-                    <p class="text-white-50 small mb-2"><i class="fa-solid fa-comment-sms me-2 text-warning"></i> SMS: 0743938057</p>
-                    <p class="text-white-50 small mb-2"><i class="fa-brands fa-whatsapp me-2 text-warning"></i> WhatsApp: 0743938057</p>
-                    <p class="text-white-50 small"><i class="fa-solid fa-user me-2 text-warning"></i> George Gervas Bulugu</p>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="fw-bold text-warning mb-3">Quick Links</h5>
-                    <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li class="admin-only"><a href="#sms-portal" class="text-white-50 text-decoration-none">Portal ya Usajili (Admin)</a></li>
-                        <li><a href="#recorder" class="text-white-50 text-decoration-none">Kinasa Sauti MP3</a></li>
-                        <li><a href="#donate" class="text-white-50 text-decoration-none">Donate / Sadaka</a></li>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold mb-3">Viungo Haraka</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-white-50 text-decoration-none hover-warning"><i class="fa-solid fa-angle-right me-2 text-warning"></i>Nyumbani</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white-50 text-decoration-none hover-warning"><i class="fa-solid fa-angle-right me-2 text-warning"></i>Kuhusu Sisi</a></li>
+                        <li class="mb-2"><a href="#programs" class="text-white-50 text-decoration-none hover-warning"><i class="fa-solid fa-angle-right me-2 text-warning"></i>Ratiba ya Vipindi</a></li>
+                        <li class="mb-2"><a href="#donate" class="text-white-50 text-decoration-none hover-warning"><i class="fa-solid fa-angle-right me-2 text-warning"></i>Support Utoaji</a></li>
                     </ul>
                 </div>
+                <div class="col-lg-4 col-md-12">
+                    <h5 class="fw-bold mb-3">Wasiliana Nasi</h5>
+                    <p class="text-white-50 small mb-2"><i class="fa-solid fa-phone me-2 text-warning"></i>+255 743 938 057</p>
+                    <p class="text-white-50 small mb-3"><i class="fa-solid fa-envelope me-2 text-warning"></i>info@gbministriesfm.com</p>
+                </div>
             </div>
-            <hr class="border-light opacity-25">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="small text-white-50 mb-0">Copyright © 2026 GB MINISTRIES FM. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="small text-white-50 mb-0">Designed by Pastor Aloyce .. 0757 344 860 with ❤️ for the Glory of God.</p>
-                </div>
+            <div class="border-top border-secondary pt-3 text-center">
+                <p class="mb-0 small text-white-50">&copy; <span id="currentYear">2026</span> GB MINISTRIES FM. Haki Zote Zimehifadhiwa.</p>
+                <p class="mb-0 small text-white-50 mt-1">Imetengenezwa na Pastor Aloyce 0757344860.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JS SCRIPTS & FUNCTIONALITIES -->
+    <!-- ADMIN PORTAL MODAL -->
+    <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="adminModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title fw-bold" id="adminModalLabel"><i class="fa-solid fa-user-shield me-2"></i>Admin Portal</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-dark">
+            <div id="adminLoginFormContainer">
+                <p class="text-muted text-center small mb-3">Ingia kama Admin kudhibiti Portal ya Usajili, SMS na Banner.</p>
+                <form onsubmit="handleAdminLogin(event)">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Jina la Mtumiaji (Username)</label>
+                        <input type="text" id="adminUsername" class="form-control" placeholder="Ingiza username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Nenosiri (Password)</label>
+                        <input type="password" id="adminPassword" class="form-control" placeholder="Ingiza password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom w-100">
+                        <i class="fa-solid fa-right-to-bracket me-1"></i> Ingia Kwenye Admin Portal
+                    </button>
+                </form>
+            </div>
+
+            <div id="adminDashboardControls" style="display: none;">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                    <div>
+                        <h6 class="fw-bold text-success mb-0"><i class="fa-solid fa-user-check me-2"></i>Karibu, Admin!</h6>
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="handleAdminLogout()">
+                        <i class="fa-solid fa-right-from-bracket me-1"></i> Ondoka
+                    </button>
+                </div>
+                
+                <form onsubmit="updateAdminBanner(event)">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Kichwa cha Tangazo (Heading)</label>
+                        <input type="text" id="adminBannerHeadingInput" class="form-control" placeholder="Mfano: Neno la Uzima" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Ujumbe wa Tangazo</label>
+                        <textarea id="adminBannerTextInput" class="form-control" rows="3" placeholder="Andika ujumbe hapa..." required></textarea>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button type="button" class="btn btn-outline-danger btn-sm rounded-pill" onclick="closeAdminBanner()">Ondoa Banner</button>
+                        <button type="submit" class="btn btn-primary-custom btn-sm"><i class="fa-solid fa-bullhorn me-1"></i> Rusisha Banner</button>
+                    </div>
+                </form>
+                
+                <div class="mt-3 text-center border-top pt-3">
+                    <a href="#sms-portal" class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-bold" data-bs-dismiss="modal">
+                        Nenda kwenye Usajili / SMS Portal
+                    </a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- JS SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <!-- FIREBASE V9 MODULE SCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, doc, updateDoc, increment, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4Mxmc0Is_wITOGqFU-ggjfmr6fRWMPBY",
+            authDomain: "mifumo-ya-radio.firebaseapp.com",
+            projectId: "mifumo-ya-radio",
+            storageBucket: "mifumo-ya-radio.firebasestorage.app",
+            messagingSenderId: "182126499582",
+            appId: "1:182126499582:web:cd9527117abc199e78b7af",
+            measurementId: "G-BDWVTXE986"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ================= KUTUMA MAONI YA LIVE (FIRESTORE) =================
+        window.submitLiveComment = async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnTumaMaoni');
+            const name = document.getElementById('commenterName').value;
+            const message = document.getElementById('commenterMessage').value;
+
+            try {
+                btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Inatuma...`;
+                btn.disabled = true;
+                await addDoc(collection(db, "maoni"), {
+                    jina: name,
+                    ujumbe: message,
+                    muda: serverTimestamp()
+                });
+                e.target.reset();
+            } catch (error) {
+                console.error("Kosa kwenye kutuma maoni: ", error);
+                alert("Kuna shida kutuma maoni. Jaribu tena.");
+            } finally {
+                btn.innerHTML = `<i class="fa-solid fa-paper-plane me-1"></i> Tuma Maoni`;
+                btn.disabled = false;
+            }
+        };
+
+        // ================= KUSOMA MAONI YA LIVE =================
+        const qMaoni = query(collection(db, "maoni"), orderBy("muda", "desc"));
+        onSnapshot(qMaoni, (snapshot) => {
+            const container = document.getElementById('commentsContainer');
+            container.innerHTML = ''; 
+
+            if (snapshot.empty) {
+                container.innerHTML = `<p class="text-muted small text-center mt-3">Bado hakuna maoni, kuwa wa kwanza kutuma!</p>`;
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                let timeString = "Sasa hivi";
+                if(data.muda) {
+                    const date = data.muda.toDate();
+                    timeString = date.getHours() + ":" + String(date.getMinutes()).padStart(2, '0');
+                }
+
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'p-2 border rounded bg-white animate__animated animate__fadeInDown';
+                commentDiv.innerHTML = `
+                    <strong class="text-primary small">${data.jina}</strong>
+                    <p class="mb-0 text-muted small">${data.ujumbe}</p>
+                    <small class="text-muted" style="font-size: 10px;">${timeString}</small>
+                `;
+                container.appendChild(commentDiv);
+            });
+        }, (error) => {
+            console.error("Kosa la kupakia maoni:", error);
+        });
+
+        // ================= TAKWIMU (LIKES NA FOLLOWERS) KUTOKA FIREBASE =================
+        const statsRef = doc(db, "takwimu", "redio");
+
+        async function initStats() {
+            try {
+                const snap = await getDoc(statsRef);
+                if (!snap.exists()) {
+                    await setDoc(statsRef, { followers: 1248, likes: 452 });
+                }
+            } catch (err) {
+                console.error("Kosa la kuunganisha takwimu za kuanzia:", err);
+            }
+        }
+        initStats();
+
+        onSnapshot(statsRef, (docSnap) => {
+            if(docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('followerCountDisplay').innerText = (data.followers || 1248).toLocaleString();
+                document.getElementById('likeCountDisplay').innerText = (data.likes || 452).toLocaleString();
+            }
+        }, (error) => {
+            console.error("Kosa la kusikiliza takwimu:", error);
+        });
+
+        let isFollowing = localStorage.getItem('gb_isFollowing') === 'true';
+        let isLiked = localStorage.getItem('gb_isLiked') === 'true';
+
+        if(isFollowing) {
+            document.getElementById('followText').innerText = "Following";
+            document.getElementById('followBtn').classList.replace('btn-danger', 'btn-secondary');
+        }
+        if(isLiked) {
+             document.getElementById('likeBtn').classList.replace('btn-primary', 'btn-secondary');
+             document.getElementById('likeBtn').innerHTML = `<i class="fa-solid fa-heart-crack me-1"></i> <span id="likeText">Dislike</span>`;
+        }
+
+        window.toggleFollow = async function() {
+            const btn = document.getElementById('followBtn');
+            const text = document.getElementById('followText');
+            btn.disabled = true;
+            try {
+                if (!isFollowing) {
+                    await updateDoc(statsRef, { followers: increment(1) });
+                    isFollowing = true;
+                    localStorage.setItem('gb_isFollowing', 'true');
+                    text.innerText = "Following";
+                    btn.classList.replace('btn-danger', 'btn-secondary');
+                } else {
+                    await updateDoc(statsRef, { followers: increment(-1) });
+                    isFollowing = false;
+                    localStorage.setItem('gb_isFollowing', 'false');
+                    text.innerText = "Follow";
+                    btn.classList.replace('btn-secondary', 'btn-danger');
+                }
+            } catch (e) { console.error("Hitilafu:", e); }
+            btn.disabled = false;
+        };
+
+        window.toggleLike = async function() {
+            const btn = document.getElementById('likeBtn');
+            btn.disabled = true;
+            try {
+                if (!isLiked) {
+                    await updateDoc(statsRef, { likes: increment(1) });
+                    isLiked = true;
+                    localStorage.setItem('gb_isLiked', 'true');
+                    btn.classList.replace('btn-primary', 'btn-secondary');
+                    btn.innerHTML = `<i class="fa-solid fa-heart-crack me-1"></i> <span id="likeText">Dislike</span>`;
+                } else {
+                    await updateDoc(statsRef, { likes: increment(-1) });
+                    isLiked = false;
+                    localStorage.setItem('gb_isLiked', 'false');
+                    btn.classList.replace('btn-secondary', 'btn-primary');
+                    btn.innerHTML = `<i class="fa-solid fa-heart me-1"></i> <span id="likeText">Like</span>`;
+                }
+            } catch(e) { console.error("Hitilafu:", e); }
+            btn.disabled = false;
+        };
+
+        // ================= KUTUMA USAJILI WA ADMIN PORTAL =================
+        window.handleRegistration = async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('regSubmitBtn');
+            const jina = document.getElementById('regFullName').value;
+            const simu = document.getElementById('regPhone').value;
+            const jinsia = document.getElementById('regGender').value;
+            const eneo = document.getElementById('regLocation').value;
+            const ujumbe = document.getElementById('regMessage').value;
+
+            try {
+                btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Inahifadhi...`;
+                btn.disabled = true;
+                await addDoc(collection(db, "usajili"), {
+                    jina: jina, simu: simu, jinsia: jinsia, eneo: eneo, ujumbe: ujumbe,
+                    muda: serverTimestamp()
+                });
+                alert("Usajili umehifadhiwa kikamilifu kwenye Database!");
+                e.target.reset();
+            } catch (error) {
+                console.error("Kosa: ", error);
+                alert("Kuna shida kuhifadhi usajili.");
+            } finally {
+                btn.innerHTML = `<i class="fa-solid fa-paper-plane me-1"></i> Hifadhi & Tuma Usajili`;
+                btn.disabled = false;
+            }
+        };
+
+        // ================= KUSOMA USAJILI KWA ADMIN =================
+        const qUsajili = query(collection(db, "usajili"), orderBy("muda", "desc"));
+        onSnapshot(qUsajili, (snapshot) => {
+            const tableBody = document.getElementById('registeredTableBody');
+            tableBody.innerHTML = '';
+            if(snapshot.empty) {
+                tableBody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">Hakuna wasikilizaji waliosajiliwa.</td></tr>`;
+                return;
+            }
+            snapshot.forEach((doc) => {
+                const d = doc.data();
+                let tareheStr = "-";
+                if (d.muda) {
+                    const date = d.muda.toDate();
+                    tareheStr = date.toLocaleDateString('sw-TZ');
+                }
+                tableBody.innerHTML += `
+                    <tr>
+                        <td class="fw-bold">${d.jina}</td>
+                        <td><a href="tel:${d.simu}">${d.simu}</a></td>
+                        <td>${d.jinsia}</td>
+                        <td>${d.eneo}</td>
+                        <td class="small">${d.ujumbe}</td>
+                        <td class="small">${tareheStr}</td>
+                    </tr>
+                `;
+            });
+        }, (error) => {
+            console.error("Kosa la kusoma usajili:", error);
+        });
+    </script>
+
+    <!-- JS YA KAWAIDA KWA KAZI ZINGINE & RECORDING -->
     <script>
-        // AOS Init
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
         AOS.init({ duration: 800, once: true });
 
-        // Preloader & Initialize Listeners
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => preloader.style.display = 'none', 500);
-            
-            // Random Listener Generator (200 - 5670)
             simulateDynamicListeners();
         });
 
-        // Function for Dynamic Online Listeners
         function simulateDynamicListeners() {
             const listenerEl = document.getElementById('listenerCount');
             setInterval(() => {
-                const min = 200;
-                const max = 5670;
-                const randomListeners = Math.floor(Math.random() * (max - min + 1)) + min;
-                listenerEl.innerText = randomListeners.toLocaleString();
-            }, 5000); // Changes every 5 seconds
+                const min = 200; const max = 5670;
+                listenerEl.innerText = (Math.floor(Math.random() * (max - min + 1)) + min).toLocaleString();
+            }, 5000); 
         }
 
-        // Toggle Theme
         function toggleTheme() {
             const htmlTag = document.documentElement;
             const themeIcon = document.querySelector('#themeToggle i');
@@ -1035,397 +1207,200 @@
             }
         }
 
-        // ================= ADMIN AUTHENTICATION SYSTEM ================= //
-        let isAdminLoggedIn = false;
-
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const u = document.getElementById('adminUsername').value.trim();
-            const p = document.getElementById('adminPassword').value.trim();
-
-            if (u === "admin" && p === "admin123") {
-                isAdminLoggedIn = true;
-                document.body.classList.add('admin-mode');
-                document.getElementById('adminLoginFormContainer').style.display = 'none';
-                document.getElementById('adminDashboardControls').classList.remove('admin-only');
-                document.getElementById('adminPortalSub').innerText = "Karibu Kwenye Dashboard ya Admin. Unaweza kudhibiti Banner na Usajili.";
-                alert("Login Imefanikiwa! Karibu Admin Portal.");
-            } else {
-                alert("Username au Password siyo sahihi! Jaribu tena (Username: admin, Password: admin123)");
-            }
-        }
-
-        function handleAdminLogout() {
-            isAdminLoggedIn = false;
-            document.body.classList.remove('admin-mode');
-            document.getElementById('adminLoginFormContainer').style.display = 'flex';
-            document.getElementById('adminDashboardControls').classList.add('admin-only');
-            document.getElementById('adminPortalSub').innerText = "Ingia kama Admin ili kudhibiti Portal ya Usajili, SMS na Banner.";
-            alert("Umetoka kwenye Admin Portal.");
-        }
-
-        // ================= RADIO PLAYER ================= //
+        // --- RADIO & PLAYER ---
         const player = document.getElementById('radioPlayer');
         const nowPlayingText = document.getElementById('nowPlayingText');
 
-        function playStream() {
-            player.play().then(() => {
-                nowPlayingText.innerHTML = "● LIVE NOW: GB MINISTRIES FM";
-            }).catch(() => {
-                alert("Imeshindwa kucheza mtiririko. Jaribu tena.");
-            });
-        }
-        function pauseStream() {
-            player.pause();
-            nowPlayingText.innerHTML = "Imesitishwa (Paused)";
-        }
-        function stopStream() {
-            player.pause();
-            player.currentTime = 0;
-            nowPlayingText.innerHTML = "Imesimamishwa (Stopped)";
-        }
+        function playStream() { player.play(); nowPlayingText.innerHTML = "● LIVE NOW: GB MINISTRIES FM"; }
+        function pauseStream() { player.pause(); nowPlayingText.innerHTML = "Imesitishwa (Paused)"; }
+        function stopStream() { player.pause(); player.currentTime = 0; nowPlayingText.innerHTML = "Imesimamishwa"; }
         function setVolume(val) { player.volume = val; }
         function toggleMute() {
             player.muted = !player.muted;
             document.getElementById('muteIcon').className = player.muted ? "fa-solid fa-volume-off" : "fa-solid fa-volume-xmark";
         }
 
-        // ================= KINASA SAUTI (AUDIO RECORDERS) ================= //
+        // --- RADIO STREAM RECORDING LOGIC ---
+        let mediaRecorder;
+        let recordedChunks = [];
+        let isRecording = false;
 
-        function switchRecTab(tab) {
-            const radioTab = document.getElementById('radioRecorderTab');
-            const sermonTab = document.getElementById('sermonRecorderTab');
-            const tabs = document.querySelectorAll('#recorderTabs button');
-            
-            if (tab === 'radio') {
-                radioTab.style.display = 'block';
-                sermonTab.style.display = 'none';
-                tabs[0].classList.add('active');
-                if (tabs[1]) tabs[1].classList.remove('active');
-            } else {
-                radioTab.style.display = 'none';
-                sermonTab.style.display = 'block';
-                tabs[0].classList.remove('active');
-                if (tabs[1]) tabs[1].classList.add('active');
-            }
-        }
-
-        // 1. KUREKODI REDIO STREAM LIVE (Kwa Msikilizaji & Admin)
-        let radioRecorder;
-        let radioChunks = [];
-
-        function startRadioRecording() {
-            if (player.paused) {
-                alert("Tafadhali anza kucheza redio kwanza (Play) ili uweze kurekodi sauti yake!");
-                return;
-            }
-
+        window.startRadioRecording = function() {
             try {
+                if (player.paused) {
+                    alert("Tafadhali bonyeza Play kwanza kusikiliza redio kabla ya kuanza kurekodi.");
+                    playStream();
+                }
+
                 let stream;
                 if (player.captureStream) {
                     stream = player.captureStream();
                 } else if (player.mozCaptureStream) {
                     stream = player.mozCaptureStream();
                 } else {
-                    alert("Kivinjari chako hakiauni kurekodi Stream ya Redio.");
+                    alert("Samahani, kivinjari chako hakiauni kurekodi sauti ya redio moja kwa moja.");
                     return;
                 }
 
-                radioRecorder = new MediaRecorder(stream);
-                radioChunks = [];
+                recordedChunks = [];
+                mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
 
-                radioRecorder.ondataavailable = e => radioChunks.push(e.data);
-                radioRecorder.onstop = () => {
-                    const audioBlob = new Blob(radioChunks, { type: 'audio/mp3' });
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    const radioPlayback = document.getElementById('radioPlayback');
-                    const downloadBtn = document.getElementById('downloadRadioBtn');
-
-                    radioPlayback.src = audioUrl;
-                    downloadBtn.href = audioUrl;
-                    document.getElementById('radioPlaybackContainer').style.display = 'block';
+                mediaRecorder.ondataavailable = function(e) {
+                    if (e.data.size > 0) {
+                        recordedChunks.push(e.data);
+                    }
                 };
 
-                radioRecorder.start();
-                document.getElementById('radioRecStatus').className = 'badge bg-danger p-2 fs-6 mb-3';
-                document.getElementById('radioRecStatus').innerText = 'Inarekodi Redio Live...';
+                mediaRecorder.onstop = function() {
+                    const blob = new Blob(recordedChunks, { type: 'audio/mp3' });
+                    const audioUrl = URL.createObjectURL(blob);
+                    
+                    // Ruhusu kucheza na kupakua kwenye sehemu ya kinasa sauti chini
+                    const playback = document.getElementById('radioPlayback');
+                    playback.src = audioUrl;
+                    document.getElementById('radioPlaybackContainer').style.display = 'block';
+                    document.getElementById('downloadRadioBtn').href = audioUrl;
+
+                    document.getElementById('radioRecStatus').innerText = "Imekamilika Kurekodi!";
+                    document.getElementById('radioRecStatus').className = "badge bg-success p-2 fs-6 mb-3";
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+
+                // Badilisha muonekano wa kitufe cha record kwenye kadi kuu
+                const mainBtn = document.getElementById('mainRecordBtn');
+                if(mainBtn) {
+                    mainBtn.innerHTML = `<i class="fa-solid fa-stop me-1"></i> Stop Rec`;
+                    mainBtn.classList.replace('btn-warning', 'btn-danger');
+                    mainBtn.classList.add('text-white');
+                    mainBtn.onclick = stopRadioRecording;
+                }
+
+                // Sasisha pia kwenye section ya kurekodi redio
+                document.getElementById('radioRecStatus').innerText = "Inarekodi Mahubiri/Redio Live...";
+                document.getElementById('radioRecStatus').className = "badge bg-danger p-2 fs-6 mb-3 animate__animated animate__pulse animate__infinite";
                 document.getElementById('startRadioRecBtn').disabled = true;
                 document.getElementById('stopRadioRecBtn').disabled = false;
+
+                alert("Kurekodi kumeanza kikamilifu!");
             } catch (err) {
-                alert("Kuna shida kuanzisha kurekodi redio: " + err.message);
+                console.error("Hitilafu ya kurekodi:", err);
+                alert("Imeshindwa kurekodi. Hakikisha redio inacheza.");
             }
-        }
+        };
 
-        function stopRadioRecording() {
-            if (radioRecorder && radioRecorder.state !== "inactive") {
-                radioRecorder.stop();
-                document.getElementById('radioRecStatus').className = 'badge bg-success p-2 fs-6 mb-3';
-                document.getElementById('radioRecStatus').innerText = 'Kurekodi Redio Imekamilika!';
-                document.getElementById('startRadioRecBtn').disabled = false;
-                document.getElementById('stopRadioRecBtn').disabled = true;
+        window.stopRadioRecording = function() {
+            if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop();
             }
-        }
+            isRecording = false;
 
-        // 2. KUREKODI MAHUBIRI KWA MIC (Kwa Admin Pekee) - ENHANCED TIMER & WAVE
-        let sermonRecorder;
-        let sermonChunks = [];
-        let sermonTimerInterval;
-        let sermonSeconds = 0;
-
-        function updateSermonTimer() {
-            sermonSeconds++;
-            const mins = String(Math.floor(sermonSeconds / 60)).padStart(2, '0');
-            const secs = String(sermonSeconds % 60).padStart(2, '0');
-            document.getElementById('sermonTimerDisplay').innerText = `${mins}:${secs}`;
-        }
-
-        async function startSermonRecording() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                sermonRecorder = new MediaRecorder(stream);
-                sermonChunks = [];
-
-                sermonRecorder.ondataavailable = event => {
-                    sermonChunks.push(event.data);
-                };
-
-                sermonRecorder.onstop = () => {
-                    const audioBlob = new Blob(sermonChunks, { type: 'audio/mp3' });
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    
-                    const sermonPlayback = document.getElementById('sermonPlayback');
-                    const downloadBtn = document.getElementById('downloadSermonBtn');
-
-                    sermonPlayback.src = audioUrl;
-                    downloadBtn.href = audioUrl;
-                    
-                    document.getElementById('sermonActionsContainer').style.display = 'block';
-                    document.getElementById('sermonRecordingIndicator').style.display = 'none';
-                    clearInterval(sermonTimerInterval);
-                };
-
-                sermonRecorder.start();
-                
-                // UI Updates for Recording State
-                document.getElementById('sermonRecStatus').className = 'badge bg-danger p-2 fs-6 mb-3';
-                document.getElementById('sermonRecStatus').innerText = 'Inarekodi Hubiri...';
-                document.getElementById('startSermonRecBtn').disabled = true;
-                document.getElementById('stopSermonRecBtn').disabled = false;
-                
-                // Hide actions and show Wave/Timer
-                document.getElementById('sermonActionsContainer').style.display = 'none';
-                document.getElementById('sermonRecordingIndicator').style.display = 'block';
-                
-                // Reset & Start Timer
-                sermonSeconds = 0;
-                document.getElementById('sermonTimerDisplay').innerText = '00:00';
-                sermonTimerInterval = setInterval(updateSermonTimer, 1000);
-
-            } catch (err) {
-                alert("Ruhusa ya kutumia Maikrofoni imekataliwa au haipatikani.");
+            const mainBtn = document.getElementById('mainRecordBtn');
+            if(mainBtn) {
+                mainBtn.innerHTML = `<i class="fa-solid fa-circle-dot me-1 text-danger"></i> Record`;
+                mainBtn.classList.replace('btn-danger', 'btn-warning');
+                mainBtn.classList.remove('text-white');
+                mainBtn.onclick = startRadioRecording;
             }
-        }
 
-        function stopSermonRecording() {
-            if (sermonRecorder && sermonRecorder.state !== "inactive") {
-                sermonRecorder.stop();
-                document.getElementById('sermonRecStatus').className = 'badge bg-success p-2 fs-6 mb-3';
-                document.getElementById('sermonRecStatus').innerText = 'Kurekodi Imekamilika!';
-                document.getElementById('startSermonRecBtn').disabled = false;
-                document.getElementById('stopSermonRecBtn').disabled = true;
+            document.getElementById('startRadioRecBtn').disabled = false;
+            document.getElementById('stopRadioRecBtn').disabled = true;
+            alert("Kurekodi kimesimamishwa. Unaweza kusikiliza au kupakua sauti hapa chini.");
+        };
+
+        // --- NOTIFICATIONS (TAARIFA) ---
+        window.toggleNotifications = function() {
+            const notifyIcon = document.getElementById('notifyIcon');
+            const notifyText = document.getElementById('notifyText');
+            
+            if (!("Notification" in window)) {
+                alert("Samahani, kivinjari chako hakikubali mfumo wa notifications.");
+                return;
             }
-        }
 
-        function deleteSermon() {
-            sermonChunks = []; // Clear data
-            document.getElementById('sermonActionsContainer').style.display = 'none';
-            document.getElementById('sermonRecStatus').className = 'badge bg-secondary p-2 fs-6 mb-3';
-            document.getElementById('sermonRecStatus').innerText = 'Tayari Kurekodi Hubiri';
-            document.getElementById('sermonTimerDisplay').innerText = '00:00';
-            alert("Rekodi ya hubiri imefutwa kikamilifu.");
-        }
-
-        // ================= LIKE & FOLLOW LOGIC ================= //
-        let followerCount = 1248;
-        let isFollowing = false;
-        let likeCount = 452;
-        let isLiked = false;
-
-        function toggleFollow() {
-            const fDisplay = document.getElementById('followerCountDisplay');
-            const fBtnText = document.getElementById('followText');
-            if(!isFollowing) {
-                followerCount++;
-                isFollowing = true;
-                fBtnText.innerText = "Following";
-                alert("Asante kwa ku-Follow GB MINISTRIES FM!");
-            } else {
-                followerCount--;
-                isFollowing = false;
-                fBtnText.innerText = "Follow";
-            }
-            fDisplay.innerText = followerCount.toLocaleString();
-        }
-
-        function addLike() {
-            if(!isLiked) {
-                likeCount++;
-                isLiked = true;
-                document.getElementById('likeCountDisplay').innerText = likeCount.toLocaleString();
-            }
-        }
-
-        function shareRadio() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'GB MINISTRIES FM',
-                    text: 'Sikiliza GB MINISTRIES FM LIVE na ubarikiwe:',
-                    url: window.location.href,
-                }).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert("Kiungo cha radio kimenakiliwa!");
-            }
-        }
-
-        function enableNotifications() {
-            if ("Notification" in window) {
+            if (Notification.permission === "granted") {
+                alert("Tayari umeshawasha taarifa! Utakuwa unapata ujumbe tukianza vipindi.");
+            } else if (Notification.permission !== "denied") {
                 Notification.requestPermission().then(permission => {
                     if (permission === "granted") {
+                        notifyIcon.classList.replace('fa-bell', 'fa-bell-slash');
+                        notifyText.innerText = "Taarifa Zimewashwa";
                         new Notification("GB MINISTRIES FM", {
-                            body: "Asante kwa kuwasha Notification! Utapata taarifa za vipindi live.",
-                            icon: "https://cdn-icons-png.flaticon.com/512/3076/3076985.png"
+                            body: "Asante! Umefanikiwa kuwasha taarifa (Notifications)."
                         });
-                    } else {
-                        alert("Ruhusa ya Notification haikukubaliwa.");
                     }
                 });
             } else {
-                alert("Kivinjari chako hakiauni Notifications.");
+                alert("Umezuia notifications. Tafadhali zirusuhusu kwenye mipangilio ya kivinjari chako.");
             }
-        }
+        };
 
-        // ================= LIVE COMMENTS ================= //
-        function submitLiveComment(e) {
+        // --- ADMIN LOGIN ---
+        let isAdminLoggedIn = false;
+        function handleAdminLogin(e) {
             e.preventDefault();
-            const name = document.getElementById('commenterName').value;
-            const msg = document.getElementById('commenterMessage').value;
-            const container = document.getElementById('commentsContainer');
-
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'p-2 border rounded bg-white animate__animated animate__fadeInDown';
-            commentDiv.innerHTML = `
-                <strong class="text-primary small">${name}</strong>
-                <p class="mb-0 text-muted small">${msg}</p>
-                <small class="text-muted" style="font-size: 10px;">Hivi sasa</small>
-            `;
-            container.prepend(commentDiv);
-            e.target.reset();
+            const u = document.getElementById('adminUsername').value;
+            const p = document.getElementById('adminPassword').value;
+            if (u === "Pastor Geroge" && p === "gbministry") { 
+                isAdminLoggedIn = true;
+                document.body.classList.add('admin-mode');
+                document.getElementById('adminLoginFormContainer').style.display = 'none';
+                document.getElementById('adminDashboardControls').style.display = 'block';
+            } else { alert("Taarifa siyo sahihi! Jaribu tena."); }
         }
 
-        // ================= REGISTRATION & SMS (ADMIN) ================= //
-        let rowCounter = 1;
-        function handleRegistration(e) {
-            e.preventDefault();
-            const editId = document.getElementById('editRowId').value;
-            const name = document.getElementById('regFullName').value;
-            const phone = document.getElementById('regPhone').value;
-            const gender = document.getElementById('regGender').value;
-            const location = document.getElementById('regLocation').value;
-            const message = document.getElementById('regMessage').value;
-            const tbody = document.getElementById('registeredTableBody');
-
-            if(editId) {
-                const tr = document.getElementById(editId);
-                tr.children[1].innerText = name;
-                tr.children[2].innerText = phone;
-                tr.children[3].innerText = gender;
-                tr.children[4].innerText = location;
-                tr.children[5].innerText = message;
-                document.getElementById('editRowId').value = '';
-                document.getElementById('regSubmitBtn').innerHTML = '<i class="fa-solid fa-paper-plane me-1"></i> Hifadhi & Tuma Usajili';
-                alert("Taarifa zimebadilishwa kikamilifu!");
-            } else {
-                rowCounter++;
-                const tr = document.createElement('tr');
-                const uniqueId = 'row-' + Date.now();
-                tr.id = uniqueId;
-                tr.innerHTML = `
-                    <td>${tbody.children.length + 1}</td>
-                    <td class="fw-bold">${name}</td>
-                    <td>${phone}</td>
-                    <td>${gender}</td>
-                    <td>${location}</td>
-                    <td>${message}</td>
-                    <td class="text-center">
-                        <button class="btn btn-sm btn-warning me-1" onclick="editUser(this)"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <a href="tel:${phone}" class="btn btn-sm btn-primary me-1" title="Piga Simu"><i class="fa-solid fa-phone"></i></a>
-                        <a href="sms:${phone}" class="btn btn-sm btn-success" title="Tuma SMS"><i class="fa-solid fa-comment-sms"></i></a>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-                alert("Usajili umefanikiwa kikamilifu!");
-            }
-
-            document.getElementById('registrationForm').reset();
+        function handleAdminLogout() {
+            isAdminLoggedIn = false;
+            document.body.classList.remove('admin-mode');
+            document.getElementById('adminLoginFormContainer').style.display = 'block';
+            document.getElementById('adminDashboardControls').style.display = 'none';
         }
 
-        function editUser(btn) {
-            const tr = btn.closest('tr');
-            document.getElementById('editRowId').value = tr.id;
-            document.getElementById('regFullName').value = tr.children[1].innerText;
-            document.getElementById('regPhone').value = tr.children[2].innerText;
-            document.getElementById('regGender').value = tr.children[3].innerText;
-            document.getElementById('regLocation').value = tr.children[4].innerText;
-            document.getElementById('regMessage').value = tr.children[5].innerText;
-            document.getElementById('regSubmitBtn').innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Sasisha (Update)';
-            window.location.href = "#sms-portal";
-        }
-
-        function filterRegisteredUsers() {
-            const input = document.getElementById('tableFilterInput').value.toLowerCase();
-            const rows = document.querySelectorAll('#registeredTableBody tr');
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                row.style.display = text.includes(input) ? '' : 'none';
-            });
-        }
-
-        // ================= ADMIN BANNER CONTROLLER ================= //
+        // --- ADMIN BANNER ---
         function updateAdminBanner(e) {
             e.preventDefault();
-            const heading = document.getElementById('adminBannerHeadingInput').value;
-            const text = document.getElementById('adminBannerTextInput').value;
-            
-            document.getElementById('adminBannerHeading').innerText = heading;
-            document.getElementById('adminBannerText').innerText = text;
+            document.getElementById('adminBannerHeading').innerText = document.getElementById('adminBannerHeadingInput').value;
+            document.getElementById('adminBannerText').innerText = document.getElementById('adminBannerTextInput').value;
             document.getElementById('adminBannerContainer').style.display = 'block';
-            alert("Banner la Admin limerushwa hewani!");
+            bootstrap.Modal.getInstance(document.getElementById('adminModal')).hide();
+        }
+        function closeAdminBanner() { document.getElementById('adminBannerContainer').style.display = 'none'; }
+
+        // --- KINASA SAUTI TAB SWITCH ---
+        function switchRecTab(tab) {
+            const radioTab = document.getElementById('radioRecorderTab');
+            const sermonTab = document.getElementById('sermonRecorderTab');
+            const tabs = document.querySelectorAll('#recorderTabs button');
+            if (tab === 'radio') {
+                radioTab.style.display = 'block'; sermonTab.style.display = 'none';
+                tabs[0].classList.add('active'); if (tabs[1]) tabs[1].classList.remove('active');
+            } else {
+                radioTab.style.display = 'none'; sermonTab.style.display = 'block';
+                tabs[0].classList.remove('active'); if (tabs[1]) tabs[1].classList.add('active');
+            }
+        }
+        
+        function shareRadio() {
+            navigator.clipboard.writeText(window.location.href); alert("Kiungo cha radio kimenakiliwa kikamilifu!");
         }
 
-        function closeAdminBanner() {
-            document.getElementById('adminBannerContainer').style.display = 'none';
+        // Filter kwa Admin Table
+        function filterRegisteredUsers() {
+            let input = document.getElementById("tableFilterInput").value.toLowerCase();
+            let tr = document.getElementById("registeredTableBody").getElementsByTagName("tr");
+            for (let i = 0; i < tr.length; i++) {
+                let tdName = tr[i].getElementsByTagName("td")[0];
+                let tdPhone = tr[i].getElementsByTagName("td")[1];
+                if (tdName || tdPhone) {
+                    let textValue = (tdName.textContent || tdName.innerText) + " " + (tdPhone.textContent || tdPhone.innerText);
+                    tr[i].style.display = textValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
+                }
+            }
         }
-
-        // ================= UTILITIES ================= //
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            alert("Namba " + text + " imenakiliwa!");
-        }
-
-        window.addEventListener('scroll', () => {
-            const topBtn = document.getElementById('scrollTopBtn');
-            topBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-        });
-
+        
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function submitForm(e) {
-            e.preventDefault();
-            alert("Ujumbe wako umepokelewa! Asante kwa mawasiliano.");
-            e.target.reset();
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
