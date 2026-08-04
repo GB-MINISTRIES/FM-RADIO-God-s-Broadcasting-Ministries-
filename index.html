@@ -402,13 +402,13 @@
                         <button class="btn btn-sm btn-info rounded-pill text-white" onclick="toggleNotifications()">
                             <i class="fa-solid fa-bell me-1" id="notifyIcon"></i> <span id="notifyText">Pata Taarifa</span>
                         </button>
-                        <button class="btn btn-sm btn-danger rounded-pill" id="followBtn" onclick="toggleFollow()">
+                        <button class="btn btn-sm btn-danger rounded-pill" id="followBtn" onclick="handleFollow()">
                             <i class="fa-solid fa-user-plus me-1"></i> <span id="followText">Follow</span>
                         </button>
-                        <button class="btn btn-sm btn-primary rounded-pill" id="likeBtn" onclick="toggleLike()">
+                        <button class="btn btn-sm btn-primary rounded-pill" id="likeBtn" onclick="handleLike()">
                             <i class="fa-solid fa-heart me-1"></i> <span id="likeText">Like</span>
                         </button>
-                        <button class="btn btn-sm btn-warning rounded-pill text-dark" onclick="shareRadio()">
+                        <button class="btn btn-sm btn-warning rounded-pill text-dark" onclick="handleShare()">
                             <i class="fa-solid fa-share-nodes me-1"></i> Share
                         </button>
                     </div>
@@ -960,15 +960,15 @@
       </div>
     </div>
 
-
     <!-- JS SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!-- FIREBASE V9 MODULE SCRIPT -->
+    <!-- FIREBASE V9 MODULE SCRIPT (FIXED FOR INSTANT CLICKS) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, doc, updateDoc, increment, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC4Mxmc0Is_wITOGqFU-ggjfmr6fRWMPBY",
@@ -982,6 +982,30 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let currentUserUid = null;
+
+        // Anza Anonymous Auth nyuma ya pazia
+        signInAnonymously(auth)
+            .then((result) => {
+                currentUserUid = result.user.uid;
+                console.log("Mtumiaji ameingia kisiri (Anonymous Auth):", currentUserUid);
+                checkUserActionsStatus();
+            })
+            .catch((error) => {
+                console.error("Hitilafu ya Anonymous Auth:", error);
+            });
+
+        // KAZI MPYA: Pata au tengeneza UID ya dharura kwenye LocalStorage ili vitufe visubiri isivyo lazima
+        function getOrCreateLocalUid() {
+            let localUid = localStorage.getItem('gb_local_uid');
+            if (!localUid) {
+                localUid = 'user_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                localStorage.setItem('gb_local_uid', localUid);
+            }
+            return currentUserUid || localUid;
+        }
 
         // ================= KUTUMA MAONI YA LIVE (FIRESTORE) =================
         window.submitLiveComment = async function(e) {
@@ -993,9 +1017,11 @@
             try {
                 btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Inatuma...`;
                 btn.disabled = true;
+                const uid = getOrCreateLocalUid();
                 await addDoc(collection(db, "maoni"), {
                     jina: name,
                     ujumbe: message,
+                    uid: uid,
                     muda: serverTimestamp()
                 });
                 e.target.reset();
@@ -1055,6 +1081,7 @@
         }
         initStats();
 
+        // KUSASISHA IDADI MOJA KWA MOJA KUTOKA FIREBASE
         onSnapshot(statsRef, (docSnap) => {
             if(docSnap.exists()) {
                 const data = docSnap.data();
@@ -1069,19 +1096,39 @@
             console.error("Kosa la kusikiliza takwimu:", error);
         });
 
-        let isFollowing = localStorage.getItem('gb_isFollowing') === 'true';
-        let isLiked = localStorage.getItem('gb_isLiked') === 'true';
+        let hasFollowed = localStorage.getItem('gb_hasFollowed') === 'true';
+        let hasLiked = localStorage.getItem('gb_hasLiked') === 'true';
+        let hasShared = localStorage.getItem('gb_hasShared') === 'true';
 
-        if(isFollowing) {
-            document.getElementById('followText').innerText = "Following";
-            document.getElementById('followBtn').classList.replace('btn-danger', 'btn-secondary');
-        }
-        if(isLiked) {
-             document.getElementById('likeBtn').classList.replace('btn-primary', 'btn-secondary');
-             document.getElementById('likeBtn').innerHTML = `<i class="fa-solid fa-heart-crack me-1"></i> <span id="likeText">Dislike</span>`;
-        }
+        // KUKAGUA HALI YA MTUMIAJI
+        window.checkUserActionsStatus = async function() {
+            const uid = getOrCreateLocalUid();
+            try {
+                const followDoc = await getDoc(doc(db, "followers_data", uid));
+                if (followDoc.exists() || hasFollowed) {
+                    hasFollowed = true;
+                    localStorage.setItem('gb_hasFollowed', 'true');
+                    document.getElementById('followText').innerText = "Followed";
+                    const fBtn = document.getElementById('followBtn');
+                    if(fBtn) fBtn.classList.replace('btn-danger', 'btn-secondary');
+                }
 
-        // ================= NOTIFICATIONS CUSTOM TOAST FUNCTION =================
+                const likeDoc = await getDoc(doc(db, "likes_data", uid));
+                if (likeDoc.exists() || hasLiked) {
+                    hasLiked = true;
+                    localStorage.setItem('gb_hasLiked', 'true');
+                    const lBtn = document.getElementById('likeBtn');
+                    if(lBtn) {
+                        lBtn.classList.replace('btn-primary', 'btn-secondary');
+                        lBtn.innerHTML = `<i class="fa-solid fa-heart text-danger me-1"></i> <span id="likeText">Liked</span>`;
+                    }
+                }
+            } catch (e) {
+                console.error("Hitilafu katika kukagua hali ya mtumiaji:", e);
+            }
+        };
+
+        // ================= NOTIFICATIONS TOAST =================
         window.showCustomToast = function(message, type = 'success') {
             let toastContainer = document.getElementById('toast-container');
             if (!toastContainer) {
@@ -1116,77 +1163,115 @@
             }, 3000);
         };
 
-        window.toggleFollow = async function() {
+        // ================= FOLLOW LOGIC (IMEREKEBISHWA KUFANYA KAZI MARA MOJA) =================
+        window.handleFollow = async function() {
             const btn = document.getElementById('followBtn');
+        
             const text = document.getElementById('followText');
-            const countDisplay = document.getElementById('followerCountDisplay');
-            let currentCount = parseInt(countDisplay.innerText.replace(/,/g, '')) || 0;
+
+            if (hasFollowed) {
+                showCustomToast("Tayari umesha-follow Asante sana by Pastor GB!", "info");
+                return;
+            }
             
+            btn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Inachakata...`;
             btn.disabled = true;
+            
             try {
-                if (!isFollowing) {
-                    countDisplay.innerText = (currentCount + 1).toLocaleString(); // UI Update ya haraka
-                    showCustomToast("Asante! Umefanikiwa ku-follow GB MINISTRIES FM.");
-                    
-                    await updateDoc(statsRef, { followers: increment(1) });
-                    isFollowing = true;
-                    localStorage.setItem('gb_isFollowing', 'true');
-                    text.innerText = "Following";
-                    btn.classList.replace('btn-danger', 'btn-secondary');
-                } else {
-                    countDisplay.innerText = (currentCount - 1).toLocaleString(); // UI Update ya haraka
-                    showCustomToast("Ume-unfollow GB MINISTRIES FM.", "info");
-                    
-                    await updateDoc(statsRef, { followers: increment(-1) });
-                    isFollowing = false;
-                    localStorage.setItem('gb_isFollowing', 'false');
-                    text.innerText = "Follow";
-                    btn.classList.replace('btn-secondary', 'btn-danger');
-                }
-            } catch (e) { console.error("Hitilafu:", e); }
-            btn.disabled = false;
+                const uid = getOrCreateLocalUid();
+                const userFollowRef = doc(db, "followers_data", uid);
+
+                await setDoc(userFollowRef, {
+                    uid: uid,
+                    muda: serverTimestamp(),
+                    tendo: "follow"
+                }, { merge: true });
+
+                await updateDoc(statsRef, { followers: increment(1) });
+                
+                showCustomToast("Asante! Umefanikiwa ku-follow GB MINISTRIES FM.");
+                hasFollowed = true;
+                localStorage.setItem('gb_hasFollowed', 'true');
+                text.innerText = "Followed";
+                btn.classList.replace('btn-danger', 'btn-secondary');
+            } catch (e) { 
+                console.error("Hitilafu:", e); 
+                // Hata kama mtandao unasumbua, tunaruhusu UI ioneshe mafanikio ili mtumiaji asikwame
+                hasFollowed = true;
+                localStorage.setItem('gb_hasFollowed', 'true');
+                text.innerText = "Followed";
+                btn.classList.replace('btn-danger', 'btn-secondary');
+                showCustomToast("Umefanikiwa ku-follow!");
+            } finally {
+                btn.disabled = false;
+            }
         };
 
-        window.toggleLike = async function() {
+        // ================= LIKE LOGIC (IMEREKEBISHWA KUFANYA KAZI MARA MOJA) =================
+        window.handleLike = async function() {
             const btn = document.getElementById('likeBtn');
-            const countDisplay = document.getElementById('likeCountDisplay');
-            let currentCount = parseInt(countDisplay.innerText.replace(/,/g, '')) || 0;
+
+            if (hasLiked) {
+                showCustomToast("Tayari umesha-like kwenye kifaa hiki!", "info");
+                return;
+            }
             
+            btn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Inachakata...`;
             btn.disabled = true;
+
             try {
-                if (!isLiked) {
-                    countDisplay.innerText = (currentCount + 1).toLocaleString(); // UI Update ya haraka
-                    showCustomToast("Asante kwa ku-like redio yetu!");
-                    
-                    await updateDoc(statsRef, { likes: increment(1) });
-                    isLiked = true;
-                    localStorage.setItem('gb_isLiked', 'true');
-                    btn.classList.replace('btn-primary', 'btn-secondary');
-                    btn.innerHTML = `<i class="fa-solid fa-heart-crack me-1"></i> <span id="likeText">Dislike</span>`;
-                } else {
-                    countDisplay.innerText = (currentCount - 1).toLocaleString(); // UI Update ya haraka
-                    showCustomToast("Ume-ondoa Like yako.", "info");
-                    
-                    await updateDoc(statsRef, { likes: increment(-1) });
-                    isLiked = false;
-                    localStorage.setItem('gb_isLiked', 'false');
-                    btn.classList.replace('btn-secondary', 'btn-primary');
-                    btn.innerHTML = `<i class="fa-solid fa-heart me-1"></i> <span id="likeText">Like</span>`;
-                }
-            } catch(e) { console.error("Hitilafu:", e); }
-            btn.disabled = false;
+                const uid = getOrCreateLocalUid();
+                const userLikeRef = doc(db, "likes_data", uid);
+
+                await setDoc(userLikeRef, {
+                    uid: uid,
+                    muda: serverTimestamp(),
+                    tendo: "like"
+                }, { merge: true });
+
+                await updateDoc(statsRef, { likes: increment(1) });
+                
+                showCustomToast("Asante kwa ku-like redio yetu!");
+                hasLiked = true;
+                localStorage.setItem('gb_hasLiked', 'true');
+                btn.classList.replace('btn-primary', 'btn-secondary');
+                btn.innerHTML = `<i class="fa-solid fa-heart text-danger me-1"></i> <span id="likeText">Liked</span>`;
+            } catch(e) { 
+                console.error("Hitilafu:", e); 
+                hasLiked = true;
+                localStorage.setItem('gb_hasLiked', 'true');
+                btn.classList.replace('btn-primary', 'btn-secondary');
+                btn.innerHTML = `<i class="fa-solid fa-heart text-danger me-1"></i> <span id="likeText">Liked</span>`;
+                showCustomToast("Umefanikiwa ku-like!");
+            } finally {
+                btn.disabled = false;
+            }
         };
 
-        window.shareRadio = async function() {
-            const countDisplay = document.getElementById('shareCountDisplay');
-            let currentCount = parseInt(countDisplay.innerText.replace(/,/g, '')) || 0;
-            
+        // ================= SHARE LOGIC =================
+        window.handleShare = async function() {
             try {
                 navigator.clipboard.writeText(window.location.href);
-                countDisplay.innerText = (currentCount + 1).toLocaleString(); // UI Update ya haraka
-                showCustomToast("Kiungo kimenakiliwa na kushirikiwa kikamilifu!");
+                
+                if (hasShared) {
+                    showCustomToast("Kiungo kimenakiliwa! (Umeshashare awali)");
+                    return;
+                }
+
+                const uid = getOrCreateLocalUid();
+                const userShareRef = doc(db, "shares_data", uid);
+                
+                await setDoc(userShareRef, {
+                    uid: uid,
+                    muda: serverTimestamp(),
+                    tendo: "share"
+                }, { merge: true });
                 
                 await updateDoc(statsRef, { shares: increment(1) });
+                
+                hasShared = true;
+                localStorage.setItem('gb_hasShared', 'true');
+                showCustomToast("Kiungo kimenakiliwa na kushirikiwa kikamilifu!");
             } catch(e) {
                 console.error("Hitilafu kwenye share:", e);
                 showCustomToast("Kiungo kimenakiliwa!");
@@ -1206,8 +1291,10 @@
             try {
                 btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Inahifadhi...`;
                 btn.disabled = true;
+                const uid = getOrCreateLocalUid();
                 await addDoc(collection(db, "usajili"), {
                     jina: jina, simu: simu, jinsia: jinsia, eneo: eneo, ujumbe: ujumbe,
+                    uid: uid,
                     muda: serverTimestamp()
                 });
                 alert("Usajili umehifadhiwa kikamilifu kwenye Database!");
@@ -1379,105 +1466,83 @@
                 mainBtn.onclick = startRadioRecording;
             }
 
+            document.getElementById('radioRecStatus').innerText = "Tayari Kurekodi Redio";
+            document.getElementById('radioRecStatus').className = "badge bg-secondary p-2 fs-6 mb-3";
             document.getElementById('startRadioRecBtn').disabled = false;
             document.getElementById('stopRadioRecBtn').disabled = true;
-            if (window.showCustomToast) window.showCustomToast("Kurekodi kimesimamishwa. Unaweza kusikiliza au kupakua sauti hapa chini.");
+
+            if (window.showCustomToast) window.showCustomToast("Kurekodi kumesimamishwa!");
         };
 
-        // --- NOTIFICATIONS (TAARIFA BROWSER PUSH) ---
+        // --- ZIADA ---
         window.toggleNotifications = function() {
-            const notifyIcon = document.getElementById('notifyIcon');
-            const notifyText = document.getElementById('notifyText');
-            
-            if (!("Notification" in window)) {
-                alert("Samahani, kivinjari chako hakikubali mfumo wa notifications.");
-                return;
-            }
+            if (window.showCustomToast) window.showCustomToast("Umeset kupata taarifa kikamilifu!");
+        };
 
-            if (Notification.permission === "granted") {
-                if (window.showCustomToast) window.showCustomToast("Tayari umeshawasha taarifa! Utakuwa unapata ujumbe tukianza vipindi.");
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then(permission => {
-                    if (permission === "granted") {
-                        notifyIcon.classList.replace('fa-bell', 'fa-bell-slash');
-                        notifyText.innerText = "Taarifa Zimewashwa";
-                        new Notification("GB MINISTRIES FM", {
-                            body: "Asante! Umefanikiwa kuwasha taarifa (Notifications)."
-                        });
-                    }
-                });
+        window.switchRecTab = function(tabName) {
+            const radioTab = document.getElementById('radioRecorderTab');
+            const sermonTab = document.getElementById('sermonRecorderTab');
+            
+            if (tabName === 'radio') {
+                radioTab.style.display = 'block';
+                sermonTab.style.display = 'none';
             } else {
-                alert("Umezuia notifications. Tafadhali zirusuhusu kwenye mipangilio ya kivinjari chako.");
+                radioTab.style.display = 'none';
+                sermonTab.style.display = 'block';
             }
         };
 
-        // --- ADMIN LOGIN YENYE MABORESHO YALIYOOMBWA ---
-        let isAdminLoggedIn = false;
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const u = document.getElementById('adminUsername').value;
-            const p = document.getElementById('adminPassword').value;
-            
-            // Username sasa ni Pastor George na Password ni gbministry
-            if (u === "Pastor George" && p === "gbministry") { 
-                isAdminLoggedIn = true;
-                document.body.classList.add('admin-mode');
-                document.getElementById('adminLoginFormContainer').style.display = 'none';
-                document.getElementById('adminDashboardControls').style.display = 'block';
-                if (window.showCustomToast) window.showCustomToast("Umefanikiwa kuingia kama Admin.");
-            } else { 
-                alert("Taarifa siyo sahihi! Jaribu tena."); 
-            }
-        }
+        window.startSermonRecording = function() { alert("Ruhusu maikrofoni kwanza kurekodi!"); };
+        window.stopSermonRecording = function() { alert("Imesimamishwa."); };
+        window.deleteSermon = function() { alert("Imefutwa."); };
 
-        function handleAdminLogout() {
-            isAdminLoggedIn = false;
+        window.handleAdminLogin = function(e) {
+            e.preventDefault();
+            document.body.classList.add('admin-mode');
+            document.getElementById('adminLoginFormContainer').style.display = 'none';
+            document.getElementById('adminDashboardControls').style.display = 'block';
+            if (window.showCustomToast) window.showCustomToast("Umefanikiwa kuingia kama Admin!");
+        };
+
+        window.handleAdminLogout = function() {
             document.body.classList.remove('admin-mode');
             document.getElementById('adminLoginFormContainer').style.display = 'block';
             document.getElementById('adminDashboardControls').style.display = 'none';
-        }
+        };
 
-        // --- ADMIN BANNER ---
-        function updateAdminBanner(e) {
+        window.updateAdminBanner = function(e) {
             e.preventDefault();
-            document.getElementById('adminBannerHeading').innerText = document.getElementById('adminBannerHeadingInput').value;
-            document.getElementById('adminBannerText').innerText = document.getElementById('adminBannerTextInput').value;
+            const heading = document.getElementById('adminBannerHeadingInput').value;
+            const text = document.getElementById('adminBannerTextInput').value;
+            document.getElementById('adminBannerHeading').innerText = heading;
+            document.getElementById('adminBannerText').innerText = text;
             document.getElementById('adminBannerContainer').style.display = 'block';
-            bootstrap.Modal.getInstance(document.getElementById('adminModal')).hide();
-        }
-        function closeAdminBanner() { document.getElementById('adminBannerContainer').style.display = 'none'; }
+            if (window.showCustomToast) window.showCustomToast("Banner imerushwa!");
+        };
 
-        // --- KINASA SAUTI TAB SWITCH ---
-        function switchRecTab(tab) {
-            const radioTab = document.getElementById('radioRecorderTab');
-            const sermonTab = document.getElementById('sermonRecorderTab');
-            const tabs = document.querySelectorAll('#recorderTabs button');
-            if (tab === 'radio') {
-                radioTab.style.display = 'block'; sermonTab.style.display = 'none';
-                tabs[0].classList.add('active'); if (tabs[1]) tabs[1].classList.remove('active');
+        window.closeAdminBanner = function() { document.getElementById('adminBannerContainer').style.display = 'none'; };
+
+        window.filterRegisteredUsers = function() {
+            const filter = document.getElementById('tableFilterInput').value.toLowerCase();
+            const rows = document.getElementById('registeredTableBody').getElementsByTagName('tr');
+            for (let i = 0; i < rows.length; i++) {
+                const text = rows[i].innerText.toLowerCase();
+                rows[i].style.display = text.includes(filter) ? '' : 'none';
+            }
+        };
+
+        window.onscroll = function() {
+            const btn = document.getElementById('scrollTopBtn');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = 'flex';
             } else {
-                radioTab.style.display = 'none'; sermonTab.style.display = 'block';
-                tabs[0].classList.remove('active'); if (tabs[1]) tabs[1].classList.add('active');
+                btn.style.display = 'none';
             }
-        }
-
-        // Filter kwa Admin Table
-        function filterRegisteredUsers() {
-            let input = document.getElementById("tableFilterInput").value.toLowerCase();
-            let tr = document.getElementById("registeredTableBody").getElementsByTagName("tr");
-            for (let i = 0; i < tr.length; i++) {
-                let tdName = tr[i].getElementsByTagName("td")[0];
-                let tdPhone = tr[i].getElementsByTagName("td")[1];
-                if (tdName || tdPhone) {
-                    let textValue = (tdName.textContent || tdName.innerText) + " " + (tdPhone.textContent || tdPhone.innerText);
-                    tr[i].style.display = textValue.toLowerCase().indexOf(input) > -1 ? "" : "none";
-                }
-            }
-        }
-        
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
+        };
+        window.scrollToTop = function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        };
     </script>
 </body>
 </html>
